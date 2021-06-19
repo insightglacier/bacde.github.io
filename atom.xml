@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bacde.me</id>
     <title>BaCde&apos;s Blog</title>
-    <updated>2021-06-09T00:55:43.473Z</updated>
+    <updated>2021-06-19T05:04:33.542Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://bacde.me"/>
     <link rel="self" href="https://bacde.me/atom.xml"/>
@@ -10,6 +10,45 @@
     <logo>https://bacde.me/images/avatar.png</logo>
     <icon>https://bacde.me/favicon.ico</icon>
     <rights>All rights reserved 2021, BaCde&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[如何高效使用RapidDNS]]></title>
+        <id>https://bacde.me/post/RapidDNS-tips-1/</id>
+        <link href="https://bacde.me/post/RapidDNS-tips-1/">
+        </link>
+        <updated>2021-06-19T04:59:28.000Z</updated>
+        <summary type="html"><![CDATA[<p>大家好，我是BaCde。沉默了了有一段时间，最近一直在边开发边思考网站的发展。思考了很多，所以网站和公众号的更新就慢下来了。后续会多发一些跟网络安全相关的一些内容。</p>
+<p>今天来分享点关于RapidDNS使用的小技巧。</p>
+<h2 id="linux-命令快速查询">Linux 命令快速查询</h2>
+<p>将以下命令加入到 <code>bash_profile</code>文件中。</p>
+<pre><code>rapiddns(){
+	curl -s &quot;https://rapiddns.io/subdomain/$1?full=1&quot; \
+	| grep -oP '_blank&quot;&gt;\K[^&lt;]*' \
+	| grep -v http \
+	| sort -u 
+}
+</code></pre>
+<p>然后后面就可以使用rapiddns命令直接查询结果。</p>
+<p><code>rapiddns tesla.com</code></p>
+<figure data-type="image" tabindex="1"><img src="https://bacde.me/post-images/1624078793937.jpg" alt="" loading="lazy"></figure>
+<h2 id="浏览器搜索引擎快速查询">浏览器搜索引擎快速查询</h2>
+]]></summary>
+        <content type="html"><![CDATA[<p>大家好，我是BaCde。沉默了了有一段时间，最近一直在边开发边思考网站的发展。思考了很多，所以网站和公众号的更新就慢下来了。后续会多发一些跟网络安全相关的一些内容。</p>
+<p>今天来分享点关于RapidDNS使用的小技巧。</p>
+<h2 id="linux-命令快速查询">Linux 命令快速查询</h2>
+<p>将以下命令加入到 <code>bash_profile</code>文件中。</p>
+<pre><code>rapiddns(){
+	curl -s &quot;https://rapiddns.io/subdomain/$1?full=1&quot; \
+	| grep -oP '_blank&quot;&gt;\K[^&lt;]*' \
+	| grep -v http \
+	| sort -u 
+}
+</code></pre>
+<p>然后后面就可以使用rapiddns命令直接查询结果。</p>
+<p><code>rapiddns tesla.com</code></p>
+<figure data-type="image" tabindex="1"><img src="https://bacde.me/post-images/1624078793937.jpg" alt="" loading="lazy"></figure>
+<h2 id="浏览器搜索引擎快速查询">浏览器搜索引擎快速查询</h2>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Cyber Apocalypse 2021 Web Artillery WriteUP]]></title>
         <id>https://bacde.me/post/Cyber-Apocalypse-2021-Web-Artillery-WriteUP/</id>
