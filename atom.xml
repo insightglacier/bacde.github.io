@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://bacde.me</id>
     <title>BaCde&apos;s Blog</title>
-    <updated>2021-06-19T05:18:13.438Z</updated>
+    <updated>2021-08-05T15:56:03.233Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://bacde.me"/>
     <link rel="self" href="https://bacde.me/atom.xml"/>
@@ -10,6 +10,41 @@
     <logo>https://bacde.me/images/avatar.png</logo>
     <icon>https://bacde.me/favicon.ico</icon>
     <rights>All rights reserved 2021, BaCde&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[施耐德充电桩漏洞挖掘之旅]]></title>
+        <id>https://bacde.me/post/Schneider-Charging-Staiong-Vulnerabilites/</id>
+        <link href="https://bacde.me/post/Schneider-Charging-Staiong-Vulnerabilites/">
+        </link>
+        <updated>2021-08-04T14:06:32.000Z</updated>
+        <summary type="html"><![CDATA[<p>大家好，我是BaCde，今天来说一说2020年底针对施耐德充电桩的漏洞挖掘过程。此次挖掘最终实现了通过远程无需用户交互场景下实现Root权限shell获取（一键远程Rootshell获取）。官方已经于今年7月份公布漏洞补丁以及相应的CVE编号。</p>
+<h2 id="0x01-为什么选择施耐德">0x01 为什么选择施耐德？</h2>
+<p>作为车联网安全研究来说，充电桩作为车联网必要组成部分，具备实际的研究价值与意义。而面临如此多的品牌，选择哪个目标作为研究对象是面临的第一个问题。为了能够更快的实现我选择了几个衡量指标，包括官方有响应中心、固件可下载、市面上可以买到、互联网上有暴露的目标。分别对应合法性、静态分析、动态测试、漏洞可产生实际的影响。</p>
+<p>根据指标通过网络上去收集信息，最终将目标锁定在施耐德。同时，施耐德也在CVE官方的CNA列表中，报送的漏洞可以获得CVE编号。</p>
+<h2 id="0x02-目标设定">0x02 目标设定</h2>
+<p>确定了要研究的对象，接下来就要确定一下我们要实现什么样的效果。这可以使得在分析过程中保持聚焦，不偏离方向。目标设定如下：</p>
+<ol>
+<li>远程获取设备Root权限</li>
+<li>无需登录，无需交互</li>
+</ol>
+<p>根据上述设定最直接的方式就是寻找远程命令执行漏洞，即要RCE类型漏洞。</p>
+<h2 id="0x03-信息收集">0x03 信息收集</h2>
+<p>一切准备就绪，开始我们的漏洞挖掘之旅。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>大家好，我是BaCde，今天来说一说2020年底针对施耐德充电桩的漏洞挖掘过程。此次挖掘最终实现了通过远程无需用户交互场景下实现Root权限shell获取（一键远程Rootshell获取）。官方已经于今年7月份公布漏洞补丁以及相应的CVE编号。</p>
+<h2 id="0x01-为什么选择施耐德">0x01 为什么选择施耐德？</h2>
+<p>作为车联网安全研究来说，充电桩作为车联网必要组成部分，具备实际的研究价值与意义。而面临如此多的品牌，选择哪个目标作为研究对象是面临的第一个问题。为了能够更快的实现我选择了几个衡量指标，包括官方有响应中心、固件可下载、市面上可以买到、互联网上有暴露的目标。分别对应合法性、静态分析、动态测试、漏洞可产生实际的影响。</p>
+<p>根据指标通过网络上去收集信息，最终将目标锁定在施耐德。同时，施耐德也在CVE官方的CNA列表中，报送的漏洞可以获得CVE编号。</p>
+<h2 id="0x02-目标设定">0x02 目标设定</h2>
+<p>确定了要研究的对象，接下来就要确定一下我们要实现什么样的效果。这可以使得在分析过程中保持聚焦，不偏离方向。目标设定如下：</p>
+<ol>
+<li>远程获取设备Root权限</li>
+<li>无需登录，无需交互</li>
+</ol>
+<p>根据上述设定最直接的方式就是寻找远程命令执行漏洞，即要RCE类型漏洞。</p>
+<h2 id="0x03-信息收集">0x03 信息收集</h2>
+<p>一切准备就绪，开始我们的漏洞挖掘之旅。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[如何高效使用RapidDNS]]></title>
         <id>https://bacde.me/post/RapidDNS-tips-1/</id>
