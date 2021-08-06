@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://localhost:4000</id>
+    <id>https://bacde.me</id>
     <title>BaCde&apos;s Blog</title>
-    <updated>2021-08-05T16:00:18.942Z</updated>
+    <updated>2021-08-06T01:03:28.351Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="http://localhost:4000"/>
-    <link rel="self" href="http://localhost:4000/atom.xml"/>
+    <link rel="alternate" href="https://bacde.me"/>
+    <link rel="self" href="https://bacde.me/atom.xml"/>
     <subtitle>在攻与防的对立与统一中需求突破。</subtitle>
-    <logo>http://localhost:4000/images/avatar.png</logo>
-    <icon>http://localhost:4000/favicon.ico</icon>
+    <logo>https://bacde.me/images/avatar.png</logo>
+    <icon>https://bacde.me/favicon.ico</icon>
     <rights>All rights reserved 2021, BaCde&apos;s Blog</rights>
     <entry>
         <title type="html"><![CDATA[施耐德充电桩漏洞挖掘之旅]]></title>
-        <id>http://localhost:4000/post/Schneider-Charging-Staiong-Vulnerabilites/</id>
-        <link href="http://localhost:4000/post/Schneider-Charging-Staiong-Vulnerabilites/">
+        <id>https://bacde.me/post/Schneider-Charging-Staiong-Vulnerabilites/</id>
+        <link href="https://bacde.me/post/Schneider-Charging-Staiong-Vulnerabilites/">
         </link>
         <updated>2021-08-04T14:06:32.000Z</updated>
         <summary type="html"><![CDATA[<p>大家好，我是BaCde，今天来说一说2020年底针对施耐德充电桩的漏洞挖掘过程。此次挖掘最终实现了通过远程无需用户交互场景下实现Root权限shell获取（一键远程Rootshell获取）。官方已经于今年7月份公布漏洞补丁以及相应的CVE编号。</p>
@@ -47,8 +47,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[如何高效使用RapidDNS]]></title>
-        <id>http://localhost:4000/post/RapidDNS-tips-1/</id>
-        <link href="http://localhost:4000/post/RapidDNS-tips-1/">
+        <id>https://bacde.me/post/RapidDNS-tips-1/</id>
+        <link href="https://bacde.me/post/RapidDNS-tips-1/">
         </link>
         <updated>2021-06-19T04:59:28.000Z</updated>
         <summary type="html"><![CDATA[<p>大家好，我是BaCde。沉默了了有一段时间，最近一直在边开发边思考网站的发展。思考了很多，所以网站和公众号的更新就慢下来了。后续会多发一些跟网络安全相关的一些内容。</p>
@@ -86,8 +86,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Cyber Apocalypse 2021 Web Artillery WriteUP]]></title>
-        <id>http://localhost:4000/post/Cyber-Apocalypse-2021-Web-Artillery-WriteUP/</id>
-        <link href="http://localhost:4000/post/Cyber-Apocalypse-2021-Web-Artillery-WriteUP/">
+        <id>https://bacde.me/post/Cyber-Apocalypse-2021-Web-Artillery-WriteUP/</id>
+        <link href="https://bacde.me/post/Cyber-Apocalypse-2021-Web-Artillery-WriteUP/">
         </link>
         <updated>2021-04-28T07:15:04.000Z</updated>
         <summary type="html"><![CDATA[<p>大家好，我是BaCde，上周临时组队参与了HackTheBox组织的Cyber Apocalyps 2021的CTF比赛。今天主要写一下Web的Artillery，这是一道3星题（最难为4星），这是一道关于XXE利用的题，做出来的人相对很少，也花了不少时间，有些收获，这里写出来与大家分享。本文不介绍基础知识，如果要学习基础可以查看后面的推荐文章。</p>
@@ -101,8 +101,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[我是如何低成本建立RapidDNS.io网站的]]></title>
-        <id>http://localhost:4000/post/RapidDNS-03/</id>
-        <link href="http://localhost:4000/post/RapidDNS-03/">
+        <id>https://bacde.me/post/RapidDNS-03/</id>
+        <link href="https://bacde.me/post/RapidDNS-03/">
         </link>
         <updated>2021-03-22T11:58:23.000Z</updated>
         <summary type="html"><![CDATA[<p>大家好！我是BaCde，2020年3月我着手开发RapidDNS这个网站，并于2020年4月1日正式上线。</p>
@@ -262,8 +262,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[RapidDNS网站在SRC漏洞挖掘中的一个思路]]></title>
-        <id>http://localhost:4000/post/RapidDNS-02/</id>
-        <link href="http://localhost:4000/post/RapidDNS-02/">
+        <id>https://bacde.me/post/RapidDNS-02/</id>
+        <link href="https://bacde.me/post/RapidDNS-02/">
         </link>
         <updated>2021-03-17T14:46:07.000Z</updated>
         <summary type="html"><![CDATA[<p>大家好，我是BaCde。今天给大家分享一下我这个月提交鹅厂漏洞的一个挖掘思路。</p>
@@ -281,8 +281,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[RapidDNS.IO 网站应用实例]]></title>
-        <id>http://localhost:4000/post/rapiddnsio-tips/</id>
-        <link href="http://localhost:4000/post/rapiddnsio-tips/">
+        <id>https://bacde.me/post/rapiddnsio-tips/</id>
+        <link href="https://bacde.me/post/rapiddnsio-tips/">
         </link>
         <updated>2021-03-11T02:23:49.000Z</updated>
         <summary type="html"><![CDATA[<p>大家好，我是BaCde。公众号开通了2个月，一直没发内容。本来计划写写网站建设思路，今天先写一篇网站的使用分享。</p>
@@ -334,8 +334,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[SourceMapX——批量扫描并恢复sourcemap的源代码文件]]></title>
-        <id>http://localhost:4000/post/sourcemapx/</id>
-        <link href="http://localhost:4000/post/sourcemapx/">
+        <id>https://bacde.me/post/sourcemapx/</id>
+        <link href="https://bacde.me/post/sourcemapx/">
         </link>
         <updated>2021-02-28T14:14:42.000Z</updated>
         <summary type="html"><![CDATA[<p>SourceMapX是一个批量扫描并恢复sourcemap的源代码文件的脚本。</p>
@@ -353,8 +353,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Hacking all the cars之Tesla API分析与利用（下）]]></title>
-        <id>http://localhost:4000/post/hacking-all-the-cars-tesla-api-exploit-part-two/</id>
-        <link href="http://localhost:4000/post/hacking-all-the-cars-tesla-api-exploit-part-two/">
+        <id>https://bacde.me/post/hacking-all-the-cars-tesla-api-exploit-part-two/</id>
+        <link href="https://bacde.me/post/hacking-all-the-cars-tesla-api-exploit-part-two/">
         </link>
         <updated>2020-11-14T03:57:41.000Z</updated>
         <summary type="html"><![CDATA[<p>该系列文章将通过逆向的方式分析Tesla远程api，并自己编写代码实现远程控制Tesla汽车。该篇文章为第二篇，将主要讲解websocket抓包分析与编程实现对Tesla的远程控制。如果你还没看第一篇，请先查看第一篇内容<a href="https://bacde.me/post/hacking-all-the-cars-tesla-api-exploit-part-one/">Hacking All The Cars - Tesla 远程API分析与利用（上）</a>。</p>
@@ -374,8 +374,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Hacking All The Cars之Tesla API分析与利用（上）]]></title>
-        <id>http://localhost:4000/post/hacking-all-the-cars-tesla-api-exploit-part-one/</id>
-        <link href="http://localhost:4000/post/hacking-all-the-cars-tesla-api-exploit-part-one/">
+        <id>https://bacde.me/post/hacking-all-the-cars-tesla-api-exploit-part-one/</id>
+        <link href="https://bacde.me/post/hacking-all-the-cars-tesla-api-exploit-part-one/">
         </link>
         <updated>2020-10-15T00:49:18.000Z</updated>
         <summary type="html"><![CDATA[<p>该系列文章将通过逆向的方式分析Tesla远程api，并自己编写代码实现远程控制Tesla汽车。</p>
@@ -437,8 +437,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[物联网安全之MQTT渗透实战]]></title>
-        <id>http://localhost:4000/post/mqtt-security-part-two/</id>
-        <link href="http://localhost:4000/post/mqtt-security-part-two/">
+        <id>https://bacde.me/post/mqtt-security-part-two/</id>
+        <link href="https://bacde.me/post/mqtt-security-part-two/">
         </link>
         <updated>2020-09-13T03:20:42.000Z</updated>
         <summary type="html"><![CDATA[<p>上一篇 <a href="https://bacde.me/post/mqtt-security-part-one/">物联网安全之MQTT协议安全 </a>主要介绍了MQTT安全的一些基础知识。今天将在上一篇基础上来说说实战中MQTT的利用。</p>
@@ -458,8 +458,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[自己的一些漏洞分析文章汇总【含0day】]]></title>
-        <id>http://localhost:4000/post/my-some-vulnerability-alert/</id>
-        <link href="http://localhost:4000/post/my-some-vulnerability-alert/">
+        <id>https://bacde.me/post/my-some-vulnerability-alert/</id>
+        <link href="https://bacde.me/post/my-some-vulnerability-alert/">
         </link>
         <updated>2020-08-23T01:04:27.000Z</updated>
         <summary type="html"><![CDATA[<p>前几年做的一些漏洞分析复现或预警的文章，后来做管理岗，仅对感兴趣的漏洞做分析，写文写的少了。今天整理了下，存个档。<br>
@@ -493,8 +493,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[物联网安全之MQTT协议安全]]></title>
-        <id>http://localhost:4000/post/mqtt-security-part-one/</id>
-        <link href="http://localhost:4000/post/mqtt-security-part-one/">
+        <id>https://bacde.me/post/mqtt-security-part-one/</id>
+        <link href="https://bacde.me/post/mqtt-security-part-one/">
         </link>
         <updated>2020-08-18T14:29:08.000Z</updated>
         <summary type="html"><![CDATA[<p>MQTT 全称为 Message Queuing Telemetry Transport（消息队列遥测传输）是是ISO 标准(ISO/IEC PRF 20922)下基于发布/订阅范式的消息协议，由 IBM 发布。由于其轻量、简单、开放和易于实现的特点非常适合需要低功耗和网络带宽有限的IoT场景。比如遥感数据、汽车、智能家居、智慧城市、医疗医护等。</p>
@@ -524,8 +524,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Hacking All The Cars之CAN总线逆向]]></title>
-        <id>http://localhost:4000/post/hacking-all-the-cars-can-bus-reverse/</id>
-        <link href="http://localhost:4000/post/hacking-all-the-cars-can-bus-reverse/">
+        <id>https://bacde.me/post/hacking-all-the-cars-can-bus-reverse/</id>
+        <link href="https://bacde.me/post/hacking-all-the-cars-can-bus-reverse/">
         </link>
         <updated>2020-07-27T23:28:10.000Z</updated>
         <summary type="html"><![CDATA[<p>本文主要是通过ICSim(Instrument Cluster Simulator)模拟CAN协议通信，通过实践对CAN总线协议进行逆向分析。在实践过程中踩过一些坑，这里跟大家分享交流。</p>
@@ -539,8 +539,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[免费查看Medium付费内容]]></title>
-        <id>http://localhost:4000/post/medium-bypass-via-google-cache/</id>
-        <link href="http://localhost:4000/post/medium-bypass-via-google-cache/">
+        <id>https://bacde.me/post/medium-bypass-via-google-cache/</id>
+        <link href="https://bacde.me/post/medium-bypass-via-google-cache/">
         </link>
         <updated>2020-07-22T13:01:49.000Z</updated>
         <summary type="html"><![CDATA[<p>Medium的文章有一些是需要花钱购买会员才可以看的，每个月有两次可以试看。超过则需要付费成为会员。</p>
@@ -556,15 +556,15 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[BIG IP CVE-2020-5902 漏洞检测和利用]]></title>
-        <id>http://localhost:4000/post/big-ip-cve-2020-5902-check-poc/</id>
-        <link href="http://localhost:4000/post/big-ip-cve-2020-5902-check-poc/">
+        <id>https://bacde.me/post/big-ip-cve-2020-5902-check-poc/</id>
+        <link href="https://bacde.me/post/big-ip-cve-2020-5902-check-poc/">
         </link>
         <updated>2020-07-05T03:19:29.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[Nagiosxi的一个RCE漏洞利用脚本]]></title>
-        <id>http://localhost:4000/post/nagiosxi-rce-1/</id>
-        <link href="http://localhost:4000/post/nagiosxi-rce-1/">
+        <id>https://bacde.me/post/nagiosxi-rce-1/</id>
+        <link href="https://bacde.me/post/nagiosxi-rce-1/">
         </link>
         <updated>2020-05-27T09:05:55.000Z</updated>
         <summary type="html"><![CDATA[<p>登陆后的，比较鸡肋。4月份发现的，一直放着，后来看官网更新了，直接发出来吧。另外官方还有一个明显的sql注入没修复。不过也是登陆后，感兴趣的可以去看一下。</p>
@@ -608,8 +608,8 @@ requests库，使用pip3安装即可。<code>python3 -m pip install requests</co
     </entry>
     <entry>
         <title type="html"><![CDATA[通过sourcemap解压缩webpack 实战]]></title>
-        <id>http://localhost:4000/post/unpack-webpack-via-sourcemap/</id>
-        <link href="http://localhost:4000/post/unpack-webpack-via-sourcemap/">
+        <id>https://bacde.me/post/unpack-webpack-via-sourcemap/</id>
+        <link href="https://bacde.me/post/unpack-webpack-via-sourcemap/">
         </link>
         <updated>2020-05-18T05:38:50.000Z</updated>
         <summary type="html"><![CDATA[<p>现在许多网站都使用webpack对网站打包，许多前端框架也默认配置好webpack。这会在渗透测试或挖洞过程中带来一些麻烦。这让我们极其痛苦。但是开发者忽视起潜在风险，在线上环境使用了开发环境的配置，或者配置了sourcemap允许在生产环境中使用。这使得我们有了机会。</p>
@@ -625,8 +625,8 @@ requests库，使用pip3安装即可。<code>python3 -m pip install requests</co
     </entry>
     <entry>
         <title type="html"><![CDATA[一些流行的云waf、cdn、lb的域名列表（80条）]]></title>
-        <id>http://localhost:4000/post/some-waf-cdn-lb-list/</id>
-        <link href="http://localhost:4000/post/some-waf-cdn-lb-list/">
+        <id>https://bacde.me/post/some-waf-cdn-lb-list/</id>
+        <link href="https://bacde.me/post/some-waf-cdn-lb-list/">
         </link>
         <updated>2020-04-26T09:56:16.000Z</updated>
         <summary type="html"><![CDATA[<p>在信息收集过程中，会遇到使用cdn、云waf等的子域名。这样在做端口扫描时就会出现大量开放的端口。这就会导致扫描时间变长，多出来许多无用的信息。这里收集了一些，大家可以用到自己的扫描器中或开源程序中，遇到域名cname使用这些域名的时候可以跳过端口检查，节省时间。</p>
@@ -656,8 +656,8 @@ pop3.mxhichina.com</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[一些提取api key的正则表达式]]></title>
-        <id>http://localhost:4000/post/Extract-API-Keys-From-Regex/</id>
-        <link href="http://localhost:4000/post/Extract-API-Keys-From-Regex/">
+        <id>https://bacde.me/post/Extract-API-Keys-From-Regex/</id>
+        <link href="https://bacde.me/post/Extract-API-Keys-From-Regex/">
         </link>
         <updated>2020-04-14T02:41:38.000Z</updated>
         <summary type="html"><![CDATA[<p>分享几十条提取api key的正则表达式。可以借助burp、Mitmproxy，goproxy等来实现敏感信息的发现。<br>
@@ -679,8 +679,8 @@ pop3.mxhichina.com</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[一些临时邮箱服务网站]]></title>
-        <id>http://localhost:4000/post/Temporary-mail-service/</id>
-        <link href="http://localhost:4000/post/Temporary-mail-service/">
+        <id>https://bacde.me/post/Temporary-mail-service/</id>
+        <link href="https://bacde.me/post/Temporary-mail-service/">
         </link>
         <updated>2020-04-13T13:15:12.000Z</updated>
         <summary type="html"><![CDATA[<p>临时邮箱，方便在一些网站隐藏自己身份信息，也可以在安全测试的使用。</p>
@@ -704,8 +704,8 @@ http://xkx.me</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[Badusb 攻击之MacOSX系统实战]]></title>
-        <id>http://localhost:4000/post/Badusb-Attack-On-Mac-OSX/</id>
-        <link href="http://localhost:4000/post/Badusb-Attack-On-Mac-OSX/">
+        <id>https://bacde.me/post/Badusb-Attack-On-Mac-OSX/</id>
+        <link href="https://bacde.me/post/Badusb-Attack-On-Mac-OSX/">
         </link>
         <updated>2020-04-05T13:58:23.000Z</updated>
         <summary type="html"><![CDATA[<p>Badusb 已经出现了很多年，使用usb进行攻击的手段也从最初的利用autorun.inf、伪造文件夹名、快捷方式等手段转为更加难以防御的Badusb。这种攻击方式就是目前可绕过杀毒软件，防御较难。</p>
@@ -735,8 +735,8 @@ http://xkx.me</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[搭建自己的CyberChef]]></title>
-        <id>http://localhost:4000/post/build-own-cyberchef/</id>
-        <link href="http://localhost:4000/post/build-own-cyberchef/">
+        <id>https://bacde.me/post/build-own-cyberchef/</id>
+        <link href="https://bacde.me/post/build-own-cyberchef/">
         </link>
         <updated>2020-04-03T07:58:37.000Z</updated>
         <summary type="html"><![CDATA[<p>CyberChef是一个很好很强大的程序,很实用。</p>
@@ -756,22 +756,22 @@ http://xkx.me</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[Hunting Tips Mindmap]]></title>
-        <id>http://localhost:4000/post/hunting-tips-mindmap/</id>
-        <link href="http://localhost:4000/post/hunting-tips-mindmap/">
+        <id>https://bacde.me/post/hunting-tips-mindmap/</id>
+        <link href="https://bacde.me/post/hunting-tips-mindmap/">
         </link>
         <updated>2020-04-03T03:29:17.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[原创小说《杀手》第十二章 疫情之下（完）]]></title>
-        <id>http://localhost:4000/post/Killer-Chapter-Twelve/</id>
-        <link href="http://localhost:4000/post/Killer-Chapter-Twelve/">
+        <id>https://bacde.me/post/Killer-Chapter-Twelve/</id>
+        <link href="https://bacde.me/post/Killer-Chapter-Twelve/">
         </link>
         <updated>2020-03-30T05:13:34.000Z</updated>
     </entry>
     <entry>
         <title type="html"><![CDATA[原创小说《杀手》第十一章 自由]]></title>
-        <id>http://localhost:4000/post/Killer-Chapter-Eleven/</id>
-        <link href="http://localhost:4000/post/Killer-Chapter-Eleven/">
+        <id>https://bacde.me/post/Killer-Chapter-Eleven/</id>
+        <link href="https://bacde.me/post/Killer-Chapter-Eleven/">
         </link>
         <updated>2020-03-22T11:54:20.000Z</updated>
         <summary type="html"><![CDATA[<pre><code>真正的牢狱是恐惧
@@ -797,8 +797,8 @@ http://xkx.me</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[bashtricks ：无空格命令执行]]></title>
-        <id>http://localhost:4000/post/bashtricks-execute-commands-without-space/</id>
-        <link href="http://localhost:4000/post/bashtricks-execute-commands-without-space/">
+        <id>https://bacde.me/post/bashtricks-execute-commands-without-space/</id>
+        <link href="https://bacde.me/post/bashtricks-execute-commands-without-space/">
         </link>
         <updated>2020-03-22T04:19:12.000Z</updated>
         <summary type="html"><![CDATA[<p>在一些漏洞利用场景，或者因为waf等原因，导致无法使用空格时，可以试试如下命令：</p>
@@ -826,8 +826,8 @@ X=$'cat\x20/etc/passwd'&amp;&amp;$X
     </entry>
     <entry>
         <title type="html"><![CDATA[原创小说《杀手》第十章 逃]]></title>
-        <id>http://localhost:4000/post/Killer-Chapter-Ten/</id>
-        <link href="http://localhost:4000/post/Killer-Chapter-Ten/">
+        <id>https://bacde.me/post/Killer-Chapter-Ten/</id>
+        <link href="https://bacde.me/post/Killer-Chapter-Ten/">
         </link>
         <updated>2020-03-21T10:38:28.000Z</updated>
         <summary type="html"><![CDATA[<p><strong>我不相信造化弄人。世界上出类拔萃的人，都主动找寻他们想要的环境。要是遍寻不获,他们就创造一个。 ——萧伯纳</strong></p>
@@ -853,8 +853,8 @@ X=$'cat\x20/etc/passwd'&amp;&amp;$X
     </entry>
     <entry>
         <title type="html"><![CDATA[BigIP Cookie 解码获取真实IP]]></title>
-        <id>http://localhost:4000/post/bigip-cookie-decode-get-real-ip/</id>
-        <link href="http://localhost:4000/post/bigip-cookie-decode-get-real-ip/">
+        <id>https://bacde.me/post/bigip-cookie-decode-get-real-ip/</id>
+        <link href="https://bacde.me/post/bigip-cookie-decode-get-real-ip/">
         </link>
         <updated>2020-03-21T07:02:57.000Z</updated>
         <summary type="html"><![CDATA[<p>BIGip是对负载均衡的实现，主要通过Virtual Server、iRules、Pool、Node、Monitor和Persistent（会话保持）实现。BIGip在实现会话保持机制时会在用户首次发起请求时，会为用户设置一个cookie，即服务端会添加set-cookie响应头头（比如：Set-Cookie: BIGipServer<sub>FinanceAndAdminWeb</sub>fo.unc.edu=105389996.20480.0000 ）。后续的请求会判断并使用这个cookie值，服务端解码该cookie并使用服务器。</p>
@@ -882,8 +882,8 @@ X=$'cat\x20/etc/passwd'&amp;&amp;$X
     </entry>
     <entry>
         <title type="html"><![CDATA[原创小说《杀手》第九章 王者归来]]></title>
-        <id>http://localhost:4000/post/Killer-Chapter-Nine/</id>
-        <link href="http://localhost:4000/post/Killer-Chapter-Nine/">
+        <id>https://bacde.me/post/Killer-Chapter-Nine/</id>
+        <link href="https://bacde.me/post/Killer-Chapter-Nine/">
         </link>
         <updated>2020-03-21T06:48:23.000Z</updated>
         <summary type="html"><![CDATA[<p>##芭堤雅</p>
@@ -897,8 +897,8 @@ X=$'cat\x20/etc/passwd'&amp;&amp;$X
     </entry>
     <entry>
         <title type="html"><![CDATA[原创小说《杀手》第八章 时代]]></title>
-        <id>http://localhost:4000/post/Killer-Chapter-Eight/</id>
-        <link href="http://localhost:4000/post/Killer-Chapter-Eight/">
+        <id>https://bacde.me/post/Killer-Chapter-Eight/</id>
+        <link href="https://bacde.me/post/Killer-Chapter-Eight/">
         </link>
         <updated>2020-03-20T05:52:15.000Z</updated>
         <summary type="html"><![CDATA[<pre><code>这是一个最好的时代，这是一个最坏的时代；
@@ -940,8 +940,8 @@ X=$'cat\x20/etc/passwd'&amp;&amp;$X
     </entry>
     <entry>
         <title type="html"><![CDATA[原创小说《杀手》第七章 X计划]]></title>
-        <id>http://localhost:4000/post/Killer-Chapter-Seven/</id>
-        <link href="http://localhost:4000/post/Killer-Chapter-Seven/">
+        <id>https://bacde.me/post/Killer-Chapter-Seven/</id>
+        <link href="https://bacde.me/post/Killer-Chapter-Seven/">
         </link>
         <updated>2020-03-19T05:30:50.000Z</updated>
         <summary type="html"><![CDATA[<p><strong>我们生活在一个由少数精英制定规则的世界里。他们左手握着权力，右手握着巨大的财富。他们背后拥有一个庞大的体系，权力与财富的相辅相成，控制了整个世界。我们生活在一个看似自由，实则处处受规则限制的世界。而黑客的存在的，就是寻求真正的自由来打破规则。实现突破，自由，平等，随意。</strong></p>
@@ -951,8 +951,8 @@ X=$'cat\x20/etc/passwd'&amp;&amp;$X
     </entry>
     <entry>
         <title type="html"><![CDATA[ SMBGhost 蓝屏代码（测试成功）]]></title>
-        <id>http://localhost:4000/post/smbghost-crash-poc/</id>
-        <link href="http://localhost:4000/post/smbghost-crash-poc/">
+        <id>https://bacde.me/post/smbghost-crash-poc/</id>
+        <link href="https://bacde.me/post/smbghost-crash-poc/">
         </link>
         <updated>2020-03-18T08:54:13.000Z</updated>
         <summary type="html"><![CDATA[<p>CVE-2020-0796 蓝屏的代码。twitter上发现的。本地虚拟机，Windows10专业版1903测试成功.</p>
@@ -980,8 +980,8 @@ python setup.py install
     </entry>
     <entry>
         <title type="html"><![CDATA[原创小说《杀手》第六章 阴与阳 0与1 攻与防]]></title>
-        <id>http://localhost:4000/post/Killer-Chapter-Six/</id>
-        <link href="http://localhost:4000/post/Killer-Chapter-Six/">
+        <id>https://bacde.me/post/Killer-Chapter-Six/</id>
+        <link href="https://bacde.me/post/Killer-Chapter-Six/">
         </link>
         <updated>2020-03-18T08:51:21.000Z</updated>
         <summary type="html"><![CDATA[<p><strong>自然界一切事物的运动，无一不是阴阳的对立统一。人的生命运动，其本身就是阴阳对立双方，在不断的矛盾运动中取得统一的过程。</strong></p>
@@ -1009,8 +1009,8 @@ python setup.py install
     </entry>
     <entry>
         <title type="html"><![CDATA[原创小说《杀手》第五章 恶作剧]]></title>
-        <id>http://localhost:4000/post/Killer-Chapter-Five/</id>
-        <link href="http://localhost:4000/post/Killer-Chapter-Five/">
+        <id>https://bacde.me/post/Killer-Chapter-Five/</id>
+        <link href="https://bacde.me/post/Killer-Chapter-Five/">
         </link>
         <updated>2020-03-17T05:21:04.000Z</updated>
         <summary type="html"><![CDATA[<p><strong>黑客，月光下的魔术师。一个看似固若金汤，并投入了巨大的财力、人力、物力打造网络安全防护系统。每天有专人盯着，并可以随时触碰到。就是这样的系统，黑客往往也只会微微一笑，以你意想不到的方式去侵入你的系统。他们喜欢黑夜，他们在黑暗中默默的监视着你的一举一动。而你对此一无所知。</strong></p>
@@ -1048,8 +1048,8 @@ python setup.py install
     </entry>
     <entry>
         <title type="html"><![CDATA[原创小说《杀手》第四章 网络灾难]]></title>
-        <id>http://localhost:4000/post/Killer-Chapter-Four/</id>
-        <link href="http://localhost:4000/post/Killer-Chapter-Four/">
+        <id>https://bacde.me/post/Killer-Chapter-Four/</id>
+        <link href="https://bacde.me/post/Killer-Chapter-Four/">
         </link>
         <updated>2020-03-14T03:29:24.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="暗流">暗流</h2>
@@ -1067,8 +1067,8 @@ python setup.py install
     </entry>
     <entry>
         <title type="html"><![CDATA[原创小说《杀手》第三章 追踪]]></title>
-        <id>http://localhost:4000/post/Killer-Chapter-Three/</id>
-        <link href="http://localhost:4000/post/Killer-Chapter-Three/">
+        <id>https://bacde.me/post/Killer-Chapter-Three/</id>
+        <link href="https://bacde.me/post/Killer-Chapter-Three/">
         </link>
         <updated>2020-03-13T06:39:50.000Z</updated>
         <summary type="html"><![CDATA[<p>Jack来到了天成网络公司的总部，他身穿一身白色衬衫，一条浅蓝色牛仔裤，整个人看上去非常的精神。到达后公司的人热情招待，但是Jack则直接拒绝了，要求立刻就要开始进行分析追踪。因为这对他来说，是一次有趣的挑战。他有些迫不及待是一个什么样的人干了这件事情。</p>
@@ -1094,8 +1094,8 @@ python setup.py install
     </entry>
     <entry>
         <title type="html"><![CDATA[原创小说《杀手》第二章 黑夜来临]]></title>
-        <id>http://localhost:4000/post/Killer-Chapter-Two/</id>
-        <link href="http://localhost:4000/post/Killer-Chapter-Two/">
+        <id>https://bacde.me/post/Killer-Chapter-Two/</id>
+        <link href="https://bacde.me/post/Killer-Chapter-Two/">
         </link>
         <updated>2020-03-12T02:00:46.000Z</updated>
         <summary type="html"><![CDATA[<p><strong>生命的短暂犹如露珠消散，人们在奔波中探寻答案。命运如同大海起伏不定，键盘在黑夜中吟唱悲歌。</strong></p>
@@ -1115,8 +1115,8 @@ python setup.py install
     </entry>
     <entry>
         <title type="html"><![CDATA[原创小说 《杀手》 第一章 网络杀手]]></title>
-        <id>http://localhost:4000/post/Killer-Chapter-One/</id>
-        <link href="http://localhost:4000/post/Killer-Chapter-One/">
+        <id>https://bacde.me/post/Killer-Chapter-One/</id>
+        <link href="https://bacde.me/post/Killer-Chapter-One/">
         </link>
         <updated>2020-03-11T07:42:22.000Z</updated>
         <summary type="html"><![CDATA[<p>杀手是在生活中受到雇主的雇佣，而去执行杀人任务，最终获得报酬。他们孤独，不轻易相信其他任何的人。他们非常冷酷，面对生命，他们从来不会手下留情。因为杀人就是她们的存在的意义。很少有人见过他们，因为大多数见过他们的人，都已经被杀死掉了。他们平时白天不出门，只有在夜里才开始行动，他们出去都会戴上墨镜，头顶一顶鸭舌帽，有时候以雾霾为由戴上口罩。其实，他们只是不想别人知道他们的真正面目。他们活在黑暗的世界里，不见天日。他们很可怜，没有爱情，没有亲情，甚至连个朋友都没有。</p>
@@ -1134,8 +1134,8 @@ python setup.py install
     </entry>
     <entry>
         <title type="html"><![CDATA[分享个学习shell脚本或辅助理解的网站-explainshell.com]]></title>
-        <id>http://localhost:4000/post/share-explainshell/</id>
-        <link href="http://localhost:4000/post/share-explainshell/">
+        <id>https://bacde.me/post/share-explainshell/</id>
+        <link href="https://bacde.me/post/share-explainshell/">
         </link>
         <updated>2020-03-05T02:27:22.000Z</updated>
         <summary type="html"><![CDATA[<p>有的时候我们会遇到一些特别难理解的shell命令，或者是一些参数我们不知道它的作用。那么今天分享的这个网址可以帮助解决上面的烦恼。</p>
@@ -1147,8 +1147,8 @@ python setup.py install
     </entry>
     <entry>
         <title type="html"><![CDATA[伪造windows登录屏幕窃取密码之FakeLogonScreen]]></title>
-        <id>http://localhost:4000/post/Fake-Windows-Logon-Screen-To-Steal-Passwords/</id>
-        <link href="http://localhost:4000/post/Fake-Windows-Logon-Screen-To-Steal-Passwords/">
+        <id>https://bacde.me/post/Fake-Windows-Logon-Screen-To-Steal-Passwords/</id>
+        <link href="https://bacde.me/post/Fake-Windows-Logon-Screen-To-Steal-Passwords/">
         </link>
         <updated>2020-03-03T04:02:40.000Z</updated>
         <summary type="html"><![CDATA[<p>在windows环境中，获取系统密码，提升系统权限。在渗透测试是经常遇到的。今天这里介绍一款伪造windows登录屏幕以达到窃取密码或题全的软件——FakeLogonScreen。</p>
@@ -1174,8 +1174,8 @@ python setup.py install
     </entry>
     <entry>
         <title type="html"><![CDATA[Windows Server 2016抓取明文密码]]></title>
-        <id>http://localhost:4000/post/Windows-Server-2016-Get-Plaintext-Password/</id>
-        <link href="http://localhost:4000/post/Windows-Server-2016-Get-Plaintext-Password/">
+        <id>https://bacde.me/post/Windows-Server-2016-Get-Plaintext-Password/</id>
+        <link href="https://bacde.me/post/Windows-Server-2016-Get-Plaintext-Password/">
         </link>
         <updated>2020-03-02T00:46:50.000Z</updated>
         <summary type="html"><![CDATA[<p>临时禁止Windows Defender</p>
@@ -1211,8 +1211,8 @@ sekurlsa::logonpasswords exit
     </entry>
     <entry>
         <title type="html"><![CDATA[Golang实现的x86下的Meterpreter reverse tcp]]></title>
-        <id>http://localhost:4000/post/golang-x86-meterpreter-reverse-tcp/</id>
-        <link href="http://localhost:4000/post/golang-x86-meterpreter-reverse-tcp/">
+        <id>https://bacde.me/post/golang-x86-meterpreter-reverse-tcp/</id>
+        <link href="https://bacde.me/post/golang-x86-meterpreter-reverse-tcp/">
         </link>
         <updated>2020-02-23T04:42:11.000Z</updated>
         <summary type="html"><![CDATA[<p>Golang实现的x86下的Meterpreter reverse tcp。地址：<a href="https://github.com/insightglacier/go_meterpreter">https://github.com/insightglacier/go_meterpreter</a></p>
@@ -1250,8 +1250,8 @@ go build -ldflags=&quot;-H windowsgui -w&quot;
     </entry>
     <entry>
         <title type="html"><![CDATA[Acunetix Web Vulnerability Scanner（AWVS） 13 破解版]]></title>
-        <id>http://localhost:4000/post/Acunetix-Web-Vulnerability-Scanner-13-cracked/</id>
-        <link href="http://localhost:4000/post/Acunetix-Web-Vulnerability-Scanner-13-cracked/">
+        <id>https://bacde.me/post/Acunetix-Web-Vulnerability-Scanner-13-cracked/</id>
+        <link href="https://bacde.me/post/Acunetix-Web-Vulnerability-Scanner-13-cracked/">
         </link>
         <updated>2020-02-22T14:04:06.000Z</updated>
         <summary type="html"><![CDATA[<p>今天看到有群里分享Acunetix Web Vulnerability Scanner(AWVS)13的破解版本，这里分享一下～</p>
@@ -1275,8 +1275,8 @@ go build -ldflags=&quot;-H windowsgui -w&quot;
     </entry>
     <entry>
         <title type="html"><![CDATA[Apache Shiro 反序列化漏洞利用工具使用]]></title>
-        <id>http://localhost:4000/post/Apache-Shiro-Deserialize-Vulnerability-Tool/</id>
-        <link href="http://localhost:4000/post/Apache-Shiro-Deserialize-Vulnerability-Tool/">
+        <id>https://bacde.me/post/Apache-Shiro-Deserialize-Vulnerability-Tool/</id>
+        <link href="https://bacde.me/post/Apache-Shiro-Deserialize-Vulnerability-Tool/">
         </link>
         <updated>2020-02-15T06:02:42.000Z</updated>
         <summary type="html"><![CDATA[<p>Shiro_exploit用于检测与利用Apache Shiro反序列化漏洞脚本。可以帮助企业发现自身安全漏洞。</p>
@@ -1336,8 +1336,8 @@ Example: python shiro_exploit.py -u target
     </entry>
     <entry>
         <title type="html"><![CDATA[CVE-2019-8449 Jira 枚举用户漏洞的利用]]></title>
-        <id>http://localhost:4000/post/cve-2019-8449-jira-enum-usernames/</id>
-        <link href="http://localhost:4000/post/cve-2019-8449-jira-enum-usernames/">
+        <id>https://bacde.me/post/cve-2019-8449-jira-enum-usernames/</id>
+        <link href="https://bacde.me/post/cve-2019-8449-jira-enum-usernames/">
         </link>
         <updated>2020-02-13T13:51:48.000Z</updated>
         <summary type="html"><![CDATA[<p>一个很攻击门槛很低的漏洞。可结合其它漏洞配合来进行攻击。</p>
@@ -1387,8 +1387,8 @@ Example: python shiro_exploit.py -u target
     </entry>
     <entry>
         <title type="html"><![CDATA[企业邮箱爆破脚本]]></title>
-        <id>http://localhost:4000/post/IMAP-Bruteforce-Script/</id>
-        <link href="http://localhost:4000/post/IMAP-Bruteforce-Script/">
+        <id>https://bacde.me/post/IMAP-Bruteforce-Script/</id>
+        <link href="https://bacde.me/post/IMAP-Bruteforce-Script/">
         </link>
         <updated>2020-01-02T13:35:45.000Z</updated>
         <summary type="html"><![CDATA[<p>IMAP（Internet Mail Access Protocol）以前称作交互邮件访问协议（Interactive Mail Access Protocol），是一个应用层协议。IMAP是斯坦福大学在1986年开发的一种邮件获取协议。它的主要作用是邮件客户端可以通过这种协议从邮件服务器上获取邮件的信息，下载邮件等。当前的权威定义是RFC3501。IMAP协议运行在TCP/IP协议之上，使用的端口是143。它与POP3协议的主要区别是用户可以不用把所有的邮件全部下载，可以通过客户端直接对服务器上的邮件进行操作。----来源于百度百科</p>
@@ -1404,8 +1404,8 @@ Example: python shiro_exploit.py -u target
     </entry>
     <entry>
         <title type="html"><![CDATA[青藤云Webshell查杀绕过]]></title>
-        <id>http://localhost:4000/post/QingtengCloud-Bypass-Php-Webshell/</id>
-        <link href="http://localhost:4000/post/QingtengCloud-Bypass-Php-Webshell/">
+        <id>https://bacde.me/post/QingtengCloud-Bypass-Php-Webshell/</id>
+        <link href="https://bacde.me/post/QingtengCloud-Bypass-Php-Webshell/">
         </link>
         <updated>2019-12-30T12:52:58.000Z</updated>
         <summary type="html"><![CDATA[<p>上周看到一些朋友在发青藤云的聊天记录，绕过一个发200块红包。周末的时候就简单做了个测试。<br>
@@ -1421,8 +1421,8 @@ Example: python shiro_exploit.py -u target
     </entry>
     <entry>
         <title type="html"><![CDATA[最新绕过D盾的php Webshell]]></title>
-        <id>http://localhost:4000/post/Webshellkill-Bypass-Php-Webshell/</id>
-        <link href="http://localhost:4000/post/Webshellkill-Bypass-Php-Webshell/">
+        <id>https://bacde.me/post/Webshellkill-Bypass-Php-Webshell/</id>
+        <link href="https://bacde.me/post/Webshellkill-Bypass-Php-Webshell/">
         </link>
         <updated>2019-12-28T11:32:53.000Z</updated>
         <summary type="html"><![CDATA[<p>去年分析D盾的查杀规律弄的绕过。<br>
@@ -1480,8 +1480,8 @@ http://127.0.0.1/test/include.php?url=data:image/png;base64,PD9waHAgcGhwaW5mbygp
     </entry>
     <entry>
         <title type="html"><![CDATA[Python2与Python3差异之print]]></title>
-        <id>http://localhost:4000/post/python2-to-python3-print/</id>
-        <link href="http://localhost:4000/post/python2-to-python3-print/">
+        <id>https://bacde.me/post/python2-to-python3-print/</id>
+        <link href="https://bacde.me/post/python2-to-python3-print/">
         </link>
         <updated>2019-12-26T14:05:32.000Z</updated>
         <summary type="html"><![CDATA[<p>时代在发展，技术在进步。没有什么是停止不前的！2019年已经接近尾声，Python2停止更新的时间越来越近。其中比较流行的如 NumPy、Requests 和 TensorFlow 等承诺到 2020 年将停止支持2.x。尽管迁移过程也会花许多时间与精力，但是转Python3是早晚都要面对的。最近在迁移自己的代码到Python3，对于迁移的过程中遇到的情况进行总结。</p>
@@ -1495,8 +1495,8 @@ http://127.0.0.1/test/include.php?url=data:image/png;base64,PD9waHAgcGhwaW5mbygp
     </entry>
     <entry>
         <title type="html"><![CDATA[Apache Shiro 反序列化漏洞实战]]></title>
-        <id>http://localhost:4000/post/Apache-Shiro-Deserialize-Vulnerability/</id>
-        <link href="http://localhost:4000/post/Apache-Shiro-Deserialize-Vulnerability/">
+        <id>https://bacde.me/post/Apache-Shiro-Deserialize-Vulnerability/</id>
+        <link href="https://bacde.me/post/Apache-Shiro-Deserialize-Vulnerability/">
         </link>
         <updated>2019-12-17T13:55:10.000Z</updated>
         <summary type="html"><![CDATA[<p>Apache Shiro是一个Java安全框架，执行身份验证、授权、密码和会话管理。2016年，网络中曝光1.2.4以前的版本存在反序列化漏洞。尽管该漏洞已经曝光几年，但是在实战中仍然比较实用。花了点时间研究了下，并根据网络上的利用脚本改进。主要修改了检测方式，并使利用方式更加简单灵活，使其更具有实战意义，提升其效率。</p>
