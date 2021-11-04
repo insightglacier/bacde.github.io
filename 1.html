@@ -1,7 +1,12 @@
 <html>
-<head></head>
 <body>
-    <a href="https://git.code.tencent.com/users/sign_in" target="_self" />
+<form   id="xss"
+        name="xss"
+        method="GET"
+        action="https://git.code.tencent.com/users/sign_in">
+</form>
+<script>
+document.getElementById("xss").submit();
+</script>
 </body>
-
 </html>
