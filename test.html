@@ -49,9 +49,12 @@ function foo(a) {
 for(var i=0;i<0x3000;++i)
     foo(true);
 
+document.write("3000");
 var x = foo(false);
+
 var arr = x[0];
 var cor = x[1];
+document.write(arr,cor);
 
 const idx = 6;
 arr[idx+10] = 0x4242;
