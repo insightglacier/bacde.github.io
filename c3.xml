@@ -2,11 +2,7 @@
 <?xml-stylesheet type="text/xml" href="?#"?>
 <!DOCTYPE div [
   <!ENTITY passwd SYSTEM "file:///etc/hosts">
-  <!ENTITY sysini SYSTEM "file:///c:/windows/system.ini">
- <!ENTITY group SYSTEM "file:///etc/passwd">
 ]>
 <div>
   <p path="file:///etc/hosts">&passwd;</p>
-  <p path="file:///c:/windows/system.ini">&sysini;</p>
-  <p path="file:////etc/passwd">&group;</p>
 </div>
