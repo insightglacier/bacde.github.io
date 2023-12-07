@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xml" href="?#"?>
 <!DOCTYPE div [
-  <!ENTITY passwd SYSTEM "file:///vendor/etc/passwd">
+  <!ENTITY passwd SYSTEM "file:///system/priv-app/EngineeringMode/EngineeringMode.apk">
 ]>
 <div>
   <p path="file:///etc/hosts">&passwd;</p>
