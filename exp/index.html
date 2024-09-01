@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文件导航</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #nav {
+            float: left;
+            width: 200px;
+            height: 100%;
+            position: fixed;
+        }
+        #nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        #nav li {
+            margin: 5px 0;
+        }
+        #nav a {
+            text-decoration: none;
+            color: #007BFF;
+            display: block;
+            padding: 5px;
+        }
+        #nav a:hover {
+            text-decoration: underline;
+            background-color: #f0f0f0;
+        }
+        #content {
+            margin-left: 210px;
+            padding: 20px;
+        }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <h1>文件导航</h1>
+        <ul>
+            <li><a href="javascript:void(0);" onclick="loadPage('index10.html')">index10.html</a></li>
+            <li><a href="javascript:void(0);" onclick="loadPage('index11.html')">index11.html</a></li>
+            <li><a href="javascript:void(0);" onclick="loadPage('index12.html')">index12.html</a></li>
+            <li><a href="javascript:void(0);" onclick="loadPage('index13.html')">index13.html</a></li>
+            <li><a href="javascript:void(0);" onclick="loadPage('index6.html')">index6.html</a></li>
+            <li><a href="javascript:void(0);" onclick="loadPage('index7.html')">index7.html</a></li>
+            <li><a href="javascript:void(0);" onclick="loadPage('index8.html')">index8.html</a></li>
+            <li><a href="javascript:void(0);" onclick="loadPage('index9.html')">index9.html</a></li>
+        </ul>
+    </div>
+    <div id="content">
+        <iframe id="iframeContent" src="index10.html"></iframe>
+    </div>
+
+    <script>
+        function loadPage(page) {
+            document.getElementById('iframeContent').src = page;
+        }
+    </script>
+</body>
+</html>
